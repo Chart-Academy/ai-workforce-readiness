@@ -1,0 +1,26 @@
+{
+  "name": "ai-workforce-readiness",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cedricthompson/ai-workforce-readiness.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cedricthompson/ai-workforce-readiness/issues"
+  },
+  "homepage": "https://github.com/cedricthompson/ai-workforce-readiness#readme",
+  "devDependencies": {
+    "express": "^5.3.0",
+    "nodemon": "^1.14.10"
+  }
+}
