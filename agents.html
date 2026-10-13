@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Agent Labs · AI for Workforce Readiness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lexend:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="icon" type="image/png" href="images/chart-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main">
+    <div class="wrap">
+      <a class="brand-mark" href="index.html"><img src="images/chart-icon.png" alt="" width="40" height="40"><span>Chart Academy</span></a>
+      <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="getting-started.html">Getting Started</a></li>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="agents.html" aria-current="page">Agent Labs</a></li>
+        <li><a href="final-project.html">Final Project</a></li>
+        <li><a href="grading.html">Grading</a></li>
+      </ul>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
+    </div>
+  </nav>
+  <div class="road" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Module 3 · Hands-on</p>
+      <h1>Agent Labs</h1>
+      <p class="lede">Each lab is a work order. Copy the starter instructions into your AI assistant, change the parts in [brackets] to fit you, test the agent, and hand in the deliverable.</p>
+    </header>
+
+    <div class="orders">
+
+      <article class="order" id="research">
+        <div class="order-stub">
+          <span class="wo">WO-01</span>
+          <dl>
+          <dt>Field</dt><dd>Cybersecurity &amp; networking</dd>
+          <dt>Tools</dt><dd>AI assistant with web search</dd>
+          <dt>Lesson</dt><dd>Accountability</dd>
+          </dl>
+        </div>
+        <div class="order-body">
+          <h3>Research Agent</h3>
+          <p>Looks up a technical topic, explains it in plain language, and lists every source it used so you can check them.</p>
+          <div>
+            <p class="label">Starter instructions</p>
+            <pre class="prompt">You are a research assistant for an entry-level [network technician]. When I give you a topic, search reliable sources (vendor documentation, government sites such as CISA or NIST, and well-known industry publications). Reply with:
+1. A plain-language summary in under 200 words
+2. Key terms with one-line definitions
+3. A numbered source list with title, publisher, date, and link
+If sources disagree or you are unsure, say so.</pre>
+          </div>
+          <div>
+            <p class="label">Deliverable</p>
+            <p>A one-page brief on a topic such as "how phishing attacks work" or "what a VLAN is," with at least three sources you opened and checked yourself.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="order" id="inventory">
+        <div class="order-stub">
+          <span class="wo">WO-02</span>
+          <dl>
+          <dt>Field</dt><dd>Custodial &amp; facilities</dd>
+          <dt>Tools</dt><dd>AI assistant + spreadsheet</dd>
+          <dt>Lesson</dt><dd>Workplace Productivity</dd>
+          </dl>
+        </div>
+        <div class="order-body">
+          <h3>Inventory Database Agent</h3>
+          <p>Turns a messy supply list into a clean inventory table, flags items that are running low, and drafts a reorder list.</p>
+          <div>
+            <p class="label">Starter instructions</p>
+            <pre class="prompt">You manage supply inventory for a [custodial team at a school]. Keep a table with these columns: Item, Category, Location, Quantity on hand, Unit, Reorder level, Last counted.
+When I send a count or a note like "used 3 cases of paper towels in Building B," update the table.
+After each update, list every item at or below its reorder level and draft a reorder request.</pre>
+          </div>
+          <div>
+            <p class="label">Deliverable</p>
+            <p>An inventory spreadsheet with at least 20 items, plus one reorder request the agent produced from your updates.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="order" id="job-search">
+        <div class="order-stub">
+          <span class="wo">WO-03</span>
+          <dl>
+          <dt>Field</dt><dd>Any job seeker</dd>
+          <dt>Tools</dt><dd>AI assistant + your résumé</dd>
+          <dt>Lesson</dt><dd>Ethics</dd>
+          </dl>
+        </div>
+        <div class="order-body">
+          <h3>Job Search Optimizer</h3>
+          <p>Tailors your résumé and cover letter to a specific job posting and keeps a tracker of where you applied.</p>
+          <div>
+            <p class="label">Starter instructions</p>
+            <pre class="prompt">You are my job search coach. When I paste a job posting and my résumé:
+1. List the skills and keywords the employer is asking for
+2. Show which ones my résumé already covers and which are missing
+3. Suggest rewrites for my bullet points using only experience I actually have. Never invent jobs, dates, or skills.
+4. Draft a short cover letter
+Then add the job to my tracker: Company, Role, Date applied, Status, Follow-up date.</pre>
+          </div>
+          <div>
+            <p class="label">Deliverable</p>
+            <p>A résumé tailored to one real posting, a cover letter, and an application tracker with at least five jobs.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="order" id="job-match">
+        <div class="order-stub">
+          <span class="wo">WO-04</span>
+          <dl>
+          <dt>Field</dt><dd>Any job seeker</dd>
+          <dt>Tools</dt><dd>AI assistant with web search</dd>
+          <dt>Lesson</dt><dd>Creating Agents</dd>
+          </dl>
+        </div>
+        <div class="order-body">
+          <h3>Skills-to-Openings Agent</h3>
+          <p>You give it your skills, experience, and availability. It finds openings that match, including employers that hire quickly.</p>
+          <div>
+            <p class="label">Starter instructions</p>
+            <pre class="prompt">Here is my skills profile: [skills, certifications, past jobs, volunteer work, location, how far I can travel, hours I can work, pay I need].
+Search current job listings near [city] and return 10 openings that fit. For each: title, employer, pay if listed, link, and why it matches me.
+Mark openings that mention same-week interviews, on-the-spot hiring, open interviews, or immediate start as QUICK HIRE.
+Do not include listings that ask for upfront fees or personal financial information.</pre>
+          </div>
+          <div>
+            <p class="label">Deliverable</p>
+            <p>Your written skills profile and a list of 10 matched openings, with at least three QUICK HIRE options you confirmed are real.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="order" id="interview">
+        <div class="order-stub">
+          <span class="wo">WO-05</span>
+          <dl>
+          <dt>Field</dt><dd>Any job seeker</dd>
+          <dt>Tools</dt><dd>AI assistant (voice mode optional)</dd>
+          <dt>Lesson</dt><dd>Creating Agents</dd>
+          </dl>
+        </div>
+        <div class="order-body">
+          <h3>Interview Practice Coach</h3>
+          <p>Acts as the hiring manager for a job you want, asks questions one at a time, and gives feedback on each answer.</p>
+          <div>
+            <p class="label">Starter instructions</p>
+            <pre class="prompt">Act as a hiring manager interviewing me for [job title] at [type of company]. Ask one question at a time and wait for my answer.
+Mix common questions ("Tell me about yourself") with behavioral ones ("Tell me about a time you...").
+After each answer, give one strength, one improvement, and a stronger example answer that uses the STAR method (Situation, Task, Action, Result).
+After 6 questions, give me an overall score out of 10 and three things to practice.</pre>
+          </div>
+          <div>
+            <p class="label">Deliverable</p>
+            <p>Two practice sessions, plus a short reflection on what improved from the first to the second.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="order" id="calendar">
+        <div class="order-stub">
+          <span class="wo">WO-06</span>
+          <dl>
+          <dt>Field</dt><dd>Everyone</dd>
+          <dt>Tools</dt><dd>AI assistant + Google or Outlook calendar</dd>
+          <dt>Lesson</dt><dd>Workplace Productivity</dd>
+          </dl>
+        </div>
+        <div class="order-body">
+          <h3>Calendar Manager</h3>
+          <p>Plans your week around work shifts, job search time, family responsibilities, and deadlines.</p>
+          <div>
+            <p class="label">Starter instructions</p>
+            <pre class="prompt">You help me manage my schedule. My fixed commitments are: [work shifts, school pickup, appointments].
+Each Sunday, I will tell you my goals and deadlines for the week. Build a weekly plan that:
+- Blocks time for job applications and interview practice
+- Adds reminders the day before every interview or deadline
+- Leaves at least one free evening
+Format it so I can add each item to my calendar.</pre>
+          </div>
+          <div>
+            <p class="label">Deliverable</p>
+            <p>A one-week plan added to your real calendar, with a screenshot.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="order is-open" id="tba">
+        <div class="order-stub">
+          <span class="wo">WO-07</span>
+          <dl>
+          <dt>Field</dt><dd>To be announced</dd>
+          </dl>
+        </div>
+        <div class="order-body">
+          <h3>More agents coming</h3>
+          <p>Another lab will be added here.</p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Chart Academy</p>
+      <p>AI for Workforce Readiness · <a href="https://www.thechartacademy.com">thechartacademy.com</a></p>
+    </div>
+  </footer>
+  <script src="js/theme.js"></script>
+</body>
+</html>
