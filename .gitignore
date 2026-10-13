@@ -1,2 +1,8 @@
-.DS_Store
+# project
 instructor-only/
+
+# macOS
+.DS_Store
+
+# node
+node_modules/
