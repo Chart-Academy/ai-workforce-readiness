@@ -25,4 +25,5 @@ Then open <http://localhost:8080>.
 server.js        Express dev server
 views/           HTML pages
 public/          Static assets (CSS, JS, images, downloadable files)
+AI_PROMPTS.md    Log of AI prompts used while building the project
 ```
