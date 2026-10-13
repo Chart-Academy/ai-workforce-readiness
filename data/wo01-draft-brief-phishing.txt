@@ -1,0 +1,31 @@
+DRAFT RESEARCH BRIEF: How Phishing Attacks Work
+Prepared by: an AI assistant (not yet checked by a person)
+Practice data for AI for Workforce Readiness. This brief contains planted mistakes. Your job is to find them.
+
+SUMMARY
+Phishing is a type of cyberattack where criminals pretend to be a trusted company or person to trick you into giving up passwords, money, or personal information. The term "phishing" was first used in 2010 by Microsoft security researchers. Phishing only happens through email, so if you do not check email at work, you are not at risk.
+
+According to the Global Phishing Index 2025 from the National Institute of Phishing Studies, 97.3% of all cyberattacks start with a phishing email.
+
+HOW TO SPOT A PHISHING MESSAGE
+- The message creates urgency ("Your account will be closed in 24 hours").
+- The sender's address does not match the company it claims to be from.
+- It asks you to click a link or open an attachment you were not expecting.
+- If a website shows a padlock icon and starts with https://, it is safe and cannot be a phishing site.
+- Spelling and grammar mistakes always reveal a phishing email, so a well-written email is safe.
+
+WHAT TO DO
+- Do not click links in unexpected messages. Go to the company's website by typing the address yourself.
+- Report the message to your IT department or supervisor.
+- If you already clicked, the best step is to wait and see whether anything happens before telling anyone.
+
+KEY TERMS
+- Phishing: a fake message designed to steal information.
+- Smishing: phishing by text message.
+- Vishing: phishing by video chat.
+- Spear phishing: a phishing attack aimed at one specific person or company.
+
+SOURCES
+1. National Institute of Phishing Studies, "Global Phishing Index 2025," www.nips-research.org/index2025
+2. Cybersecurity and Infrastructure Security Agency (CISA), guidance on avoiding social engineering and phishing attacks
+3. "Phishing Facts Everyone Should Know," posted by user cyberguy99 on a discussion forum

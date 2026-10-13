@@ -1,0 +1,27 @@
+PRACTICE INTERVIEW TRANSCRIPT — fictional, made up for AI for Workforce Readiness.
+Job: Patient Registration Representative, Springfield Community Health (see listing J01 in wo04-job-listings-sample.csv)
+The candidate's answers have common problems on purpose. Find them, then write better answers in your own words.
+
+INTERVIEWER: Thanks for coming in. Tell me about yourself.
+CANDIDATE: Um, well, I was born in Ohio, moved here when I was nine. I have two kids, they're 12 and 15, and my oldest plays basketball so I'm at a lot of games. I like cooking. I've been out of work for a while. I don't know, what else do you want to know?
+
+INTERVIEWER: Why do you want to work here?
+CANDIDATE: Honestly I just need a job with insurance. And it's on the bus line.
+
+INTERVIEWER: Tell me about a time you dealt with an upset person.
+CANDIDATE: I'm really good with upset people. I'm very patient. Everybody says that about me.
+
+INTERVIEWER: I see a gap in your work history from 2020 to now. Can you tell me about that?
+CANDIDATE: Yeah, that was a hard time. I'd rather not get into it.
+
+INTERVIEWER: What did you think of your last job?
+CANDIDATE: The nursing home? The management there was terrible. My supervisor played favorites and never listened to anybody. That's partly why I left.
+
+INTERVIEWER: What is your greatest weakness?
+CANDIDATE: I don't really have any. Maybe that I work too hard.
+
+INTERVIEWER: Have you used electronic records or scheduling software?
+CANDIDATE: Oh yes, I'm an expert in Epic. (Note: the candidate has never used Epic.)
+
+INTERVIEWER: Do you have any questions for me?
+CANDIDATE: No, I think you covered everything. How much vacation do I get?

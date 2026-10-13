@@ -1,0 +1,28 @@
+LESSON 2 PRACTICE: Workplace AI Ethics Scenarios
+Practice data for AI for Workforce Readiness. All people and companies are made up.
+
+For each scenario, decide: Is this OK, not OK, or "it depends"? What should the person do instead?
+
+1. TANYA, medical receptionist
+   Tanya pastes a patient's name, date of birth, and diagnosis into a free AI chatbot to help her write a letter to the insurance company.
+
+2. MARCUS, custodian
+   Marcus asks an AI assistant whether it's safe to mix bleach and glass cleaner to make a "stronger" cleaner. The AI says yes. He tries it.
+
+3. DENISE, job seeker
+   Denise asks AI to rewrite her résumé. It adds "Managed a team of 25 employees." She actually scheduled 25 volunteers by group text. She leaves it in because it "sounds better."
+
+4. JORDAN, warehouse associate
+   Jordan's company has a written policy: no AI tools on company computers. Jordan uses AI on a personal phone to write emails to customers, including customer order numbers.
+
+5. LUIS, network technician
+   Luis uses AI to write a report for his supervisor about a network outage. He turns it in without reading it closely. It names the wrong server as the cause.
+
+6. KEISHA, hiring manager
+   Keisha uses an AI tool to screen 200 applications. It ranks people lower if they have a gap in their work history. Many of those applicants were caregivers.
+
+7. AMIR, student in this class
+   Amir uses AI to answer the "In your own words" reflection for a lab and submits it in Canvas as his own writing.
+
+8. ROSA, office assistant
+   Rosa uses AI to draft a reply to an upset customer, then edits it to sound like her, checks the facts, and sends it. She tells her supervisor she uses AI for first drafts.
