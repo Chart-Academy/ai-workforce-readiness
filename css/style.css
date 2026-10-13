@@ -11,6 +11,7 @@
   --accent: #d81f2e;       /* logo red */
   --on-accent: #ffffff;
   --road-line: #ffffff;
+  --ai-pink: #d1166f;      /* AI Instructions notes */
 
   --font-display: "Lexend", "Segoe UI", system-ui, sans-serif;
   --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -37,6 +38,7 @@
     --accent: #e8414e;
     --on-accent: #ffffff;
     --road-line: #e7ebf6;
+    --ai-pink: #ff6fb3;
     color-scheme: dark;
   }
 }
@@ -51,6 +53,7 @@
   --accent: #e8414e;
   --on-accent: #ffffff;
   --road-line: #e7ebf6;
+  --ai-pink: #ff6fb3;
   color-scheme: dark;
 }
 
@@ -463,3 +466,12 @@ tfoot td { font-weight: 700; border-bottom: 0; border-top: 2px solid var(--ink);
 .own-words li { font-style: italic; }
 .upload { font-size: 0.95rem; }
 .order { scroll-margin-top: 6rem; }
+
+/* ---------- AI Instructions notes (pink) ---------- */
+.ai-note { color: var(--ai-pink); font-size: 0.95rem; max-width: var(--measure); }
+.prompt .ai-note { font-size: inherit; }
+
+/* ---------- Class materials ---------- */
+.materials { display: grid; gap: 0.25rem; }
+.materials .files a { font-family: var(--font-body); font-weight: 700; font-size: 0.9rem; }
+.order-body .files, .lesson-body .files { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; }
