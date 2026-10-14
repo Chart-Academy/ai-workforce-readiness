@@ -42,14 +42,23 @@ body {
   font-family: var(--font-body);
   display: flex;
   flex-direction: column;
+}
 
-  /* prevent selection */
+/* Slide text can't be selected or copied; links and buttons still work normally. */
+.deck {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+a,
+button {
+  -webkit-touch-callout: default;
+  cursor: pointer;
+  touch-action: manipulation;
 }
 
 .deck-bar {
@@ -262,3 +271,8 @@ body {
 .slide .box table { font-size: clamp(0.85rem, 1.4vw, 1.05rem); }
 .slide .files { display: flex; }
 .art .grid { fill: none; stroke: var(--line); stroke-width: 2; }
+
+/* Practice-file chips on "Your turn" slides are download links; the whole chip is clickable. */
+.slide .files li:has(a) { padding: 0; }
+.slide .files a { display: block; padding: 0.4rem 0.7rem; color: var(--brand); text-decoration: none; }
+.slide .files a:hover { text-decoration: underline; }

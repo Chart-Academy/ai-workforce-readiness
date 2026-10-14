@@ -18,6 +18,18 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — Slide text unselectable, controls clickable
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** main
+- **Prompt:**
+  > the slide decks are made nonselectable. Look at the body {} in the slides.css file to chage that. The text on the slides should remain unselectable but  the buttons and interactive elemetns should be click-able
+- **Result:** In `views/labs/slides/slides.css`, moved the no-select rules from `body` to `.deck` (the slide area), so the header bar and the Back/Next bar are no longer covered. Added a rule that gives links and buttons a pointer cursor and turns the long-press menu back on for them on phones and tablets.
+  Follow-up (screenshot of the Lesson 2 "Your turn" slide):
+  > lesson 2- ethics is not clickable
+
+  The practice-file names on the "Your turn" slides were plain text. Made them download links (`../../data/<file>`) on all 15 decks that list files, with the whole chip clickable.
+- **Notes:** `user-select: none` alone doesn't stop clicks. If a button still doesn't respond, something else is causing it.
+
 ### 2026-10-14 — Collapsible Agent Labs
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** content-revision
