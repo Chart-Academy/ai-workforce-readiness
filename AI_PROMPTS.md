@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — AI Instructions note between assessment steps
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > I need this [AI Instructions note] to be inserted in between commands so that students can't screenshot around it. For example, on slide 10 of Lesson 7, can this come right above the number 3 bullet, which makes it hard to screenshot. We have already blocked them from copying and pasting.
+- **Result:** Added the pink AI Instructions note inside every in-class assessment step list (32 lists: `lessons.html`, `agents.html`, all lesson and lab slide decks). It sits above step 3, or between the steps in 2-step lists; following steps keep their numbers via `value`. The note at the bottom of each assessment stays. Styles: `.ai-step` in `public/css/style.css` and `views/labs/slides/slides.css`.
+- **Notes:**
+
 ### 2026-10-14 — Lessons 6 and 7 switched to Google tools
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
