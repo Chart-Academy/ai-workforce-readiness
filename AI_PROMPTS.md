@@ -18,6 +18,32 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — Footer sitemap
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** content-revision
+- **Prompt:**
+  > can the site footers include a brief sitemap?
+- **Result:** Added a two-column site map to the footer of all six main pages: Course (Home, Getting Started, Grading) and Learn (Lessons, Agent Labs, Final Project). The current page is highlighted. Added footer styles to `public/css/style.css`.
+  Follow-up:
+  > Can there also be a brief 1 or 2 sentences about the chart academy in the far left of the footer with a logo monochrome/transparent logo above?
+
+  Added a footer column on the far left with the full Chart Academy logo in a single muted color and a two-sentence description.
+
+  Follow-up: shared a sketch of a new footer layout: logo and summary on the left, site map on the right, then copyright and the Chart Academy link on a bottom row, with no divider lines.
+
+  Rebuilt the footer as two rows to match: the logo and summary are centered in a left column with the site map centered beside them, and the bottom row has the copyright on the left and the link on the right. On phones everything stacks.
+
+  Follow-up:
+  > I don't like the logo and summary. If those can be removed. Can the sitemap be moved back to the left of the footer, and keep the copywrite line. Was the copywrite line moved by chance?
+
+  Removed the logo and summary and their styles. The site map is back on the left. The bottom row keeps the copyright on the left and the link on the right, which matches the original footer.
+
+  Follow-up:
+  > Let's try adding a back to top link. If the site can scroll along with it, that would be nice.
+
+  Added a "Back to top ↑" link to the right of the site map on all six main pages. The page scrolls smoothly back up unless the visitor's device is set to reduce motion.
+- **Notes:** Final footer: site map with a "Back to top" link on its right, then a copyright and link row. The logo and summary were tried and removed. The slide decks have no footer, so they were left as they are.
+
 ### 2026-10-14 — Lesson 2–5 slide decks
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** content-revision

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/style.css">
   <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 </head>
-<body>
+<body id="top">
   <nav class="site-nav" aria-label="Main">
     <div class="wrap">
       <a class="brand-mark" href="index.html"><img src="images/chart-icon.png" alt="" width="40" height="40"><span>Chart Academy</span></a>
@@ -89,8 +89,21 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>© 2026 Chart Academy</p>
-      <p>AI for Workforce Readiness · <a href="https://www.thechartacademy.com">thechartacademy.com</a></p>
+      <nav class="footer-map" aria-label="Site map">
+        <div>
+          <p class="footer-head">Course</p>
+          <ul><li><a href="index.html">Home</a></li><li><a href="getting-started.html" aria-current="page">Getting Started</a></li><li><a href="grading.html">Grading</a></li></ul>
+        </div>
+        <div>
+          <p class="footer-head">Learn</p>
+          <ul><li><a href="lessons.html">Lessons</a></li><li><a href="agents.html">Agent Labs</a></li><li><a href="final-project.html">Final Project</a></li></ul>
+        </div>
+      </nav>
+      <a class="to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      <div class="footer-meta">
+        <p>© 2026 Chart Academy</p>
+        <p>AI for Workforce Readiness · <a href="https://www.thechartacademy.com">thechartacademy.com</a></p>
+      </div>
     </div>
   </footer>
   <script src="js/theme.js"></script>
