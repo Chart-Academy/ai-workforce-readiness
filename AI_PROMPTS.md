@@ -18,6 +18,23 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — Introduce acronyms before use
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** content-revision
+- **Prompt:**
+  > in the html files, make sure to introduce acronyms before using them. For example,  "... Artificial intelligenc (AI) ..."
+
+  Follow-ups:
+  > In the slides (labs/slides/wo*.html), there is an eyebrow saying something along the lines of "Agent Lab . Work Order (WO...) . ...". You don't need to spell out the work order here as it was already done in the agents.html file.
+
+  > please, unless the slides are teaching new content.
+
+  > In the agents.html file, VLAN is spelled out but it is done within a button. I think it should be spelled out in either headings or bodies.
+
+  > I think we can make an exception in this case. Thanks
+- **Result:** Spelled out acronyms at first use in headings or body text on each page: AI in `getting-started.html`, `agents.html`, `final-project.html`, `grading.html`, `lessons.html`, and the Lesson 1 slides; WO in `agents.html` and `grading.html`; CISA, NIST, VLAN, and CSV in `agents.html`; IT and IP in the WO-01 slides; IT in the Lesson 1 slides; ID in the WO-04 slides; and STAR in the WO-05 slides.
+- **Notes:** Lab slide eyebrows and title-slide subtitles kept the short forms because `agents.html` already introduces them. Acronyms stay spelled out on slides that teach the topic (Lesson 1 AI, WO-05 STAR). VLAN moved from the download button to the WO-01 assessment step. The button still shows "VLAN" before the spelled-out form, which was accepted as an exception. Page titles, slide header bars, AM/PM, and OK were left as is.
+
 ### 2026-10-13 — Lesson 1 slide deck
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** dev-tools
