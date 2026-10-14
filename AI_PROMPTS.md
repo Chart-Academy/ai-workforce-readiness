@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — Lesson 2–5 slide decks
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** content-revision
+- **Prompt:**
+  > can you make slides for the lessons please? Ideally, they should be 5-8 slides in length, informative but conscise.
+- **Result:** Created `views/lessons/slides/lesson2-ethics.html` (7 slides), `lesson3-citing-sources.html` (7), `lesson4-workplace-productivity.html` (6), and `lesson5-creating-agents.html` (6), each with a title picture, diagrams, and an assessment slide that matches `lessons.html`. Replaced the "Slides (coming soon)" placeholders in `views/lessons.html` with links. Added shared styles to `views/labs/slides/slides.css` (boxes, tables, OK/not-OK cards, title-art strokes) and fixed slides that ran taller than the screen so they scroll instead of clipping their top. The fix also applies to the Lesson 1 and lab decks.
+- **Notes:** Lesson 1 already had a deck, so it only gained the tighter assessment-slide layout. The Lesson 3 citation example uses the Federal Trade Commission's phishing page with an accessed date instead of a published date.
+
 ### 2026-10-14 — Introduce acronyms before use
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** content-revision
