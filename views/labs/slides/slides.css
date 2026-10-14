@@ -42,6 +42,14 @@ body {
   font-family: var(--font-body);
   display: flex;
   flex-direction: column;
+
+  /* prevent selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .deck-bar {
@@ -206,3 +214,51 @@ body {
 .deck-nav button:hover { border-color: var(--brand); }
 .deck-nav button:disabled { opacity: 0.4; cursor: default; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Shared pieces for the Lesson 2–5 decks. */
+.art .stroke { fill: none; stroke: var(--brand); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.art .ok { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+.art .lens { fill: var(--surface); stroke: var(--brand); stroke-width: 9; }
+.art .handle { stroke: var(--brand); stroke-width: 16; stroke-linecap: round; }
+
+.slide .cards li.good { border-top: 4px solid var(--brand); }
+.slide .cards li.bad { border-top: 4px solid var(--accent); }
+.cards .bad .icon { color: var(--accent); }
+
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.15rem; display: grid; gap: 0.6rem; align-content: start; }
+.slide .box p, .slide .box li { max-width: none; font-size: clamp(1rem, 1.6vw, 1.2rem); }
+.slide .label { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.slide .mono { font-family: var(--font-mono); font-size: clamp(0.9rem, 1.4vw, 1.05rem); line-height: 1.6; }
+.slide .notes { white-space: pre-wrap; }
+
+.compare.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (max-width: 800px) { .compare.even { grid-template-columns: 1fr; } }
+
+.slide table { border-collapse: collapse; width: 100%; font-size: clamp(0.9rem, 1.5vw, 1.1rem); }
+.slide th, .slide td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--line); }
+.slide th { font-family: var(--font-mono); font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.slide td.low { color: var(--accent); font-weight: 700; }
+.slide .cards li ul { gap: 0.4em; }
+.slide .cards li li { display: list-item; background: none; border: 0; border-radius: 0; padding: 0; font-size: inherit; }
+.slide .box p { overflow-wrap: anywhere; }
+.slide .flow { padding: 0; }
+/* Center slides without clipping: when content is taller than the screen it scrolls from the top. */
+.slide { justify-content: flex-start; }
+.slide > :first-child { margin-top: auto; }
+.slide > :last-child { margin-bottom: auto; }
+.slide .files { padding: 0; }
+.slide .compare li { max-width: none; font-size: clamp(1rem, 1.6vw, 1.2rem); }
+.slide .cards.two { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.slide.assess { gap: clamp(0.6rem, 1.5vh, 1.1rem); }
+.slide.assess p, .slide.assess li { font-size: clamp(1rem, 1.7vw, 1.3rem); max-width: 60ch; }
+.slide.assess .files li { font-size: clamp(0.85rem, 1.4vw, 1.05rem); }
+.slide.assess .ai-note { font-size: clamp(0.85rem, 1.3vw, 1rem); }
+
+/* Applied skills decks (Lessons 6–10). */
+.slide kbd { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface); border: 1px solid var(--line); border-bottom-width: 3px; border-radius: 5px; padding: 0.05em 0.4em; }
+.slide .path { font-family: var(--font-mono); font-size: 0.9em; color: var(--brand); }
+.slide td.num, .slide th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.slide td.text-num { color: var(--accent); font-weight: 700; text-align: left; }
+.slide .box table { font-size: clamp(0.85rem, 1.4vw, 1.05rem); }
+.slide .files { display: flex; }
+.art .grid { fill: none; stroke: var(--line); stroke-width: 2; }

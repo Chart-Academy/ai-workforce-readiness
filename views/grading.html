@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/style.css">
   <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 </head>
-<body>
+<body id="top">
   <nav class="site-nav" aria-label="Main">
     <div class="wrap">
       <a class="brand-mark" href="index.html"><img src="images/chart-icon.png" alt="" width="40" height="40"><span>Chart Academy</span></a>
@@ -44,7 +44,7 @@
           <tbody>
             <tr><td>Participation</td><td>Attendance and working with classmates</td><td class="num">15%</td></tr>
             <tr><td>Lesson assessments</td><td>In-class assessments for Lessons 1–5, uploaded to Canvas</td><td class="num">20%</td></tr>
-            <tr><td>Agent Lab assessments</td><td>In-class assessments for WO-01 through WO-06, uploaded to Canvas</td><td class="num">40%</td></tr>
+            <tr><td>Agent Lab assessments</td><td>In-class assessments for Work Orders 01 through 06 (WO-01 through WO-06), uploaded to Canvas</td><td class="num">40%</td></tr>
             <tr><td>Final Project</td><td>Three-agent workforce, demo, and reflection</td><td class="num">25%</td></tr>
           </tbody>
           <tfoot>
@@ -61,7 +61,7 @@
           <thead><tr><th>Part</th><th>What we look for</th><th class="num">Points</th></tr></thead>
           <tbody>
             <tr><td>Did it</td><td>The task is complete and uses the practice files or your real information</td><td class="num">4</td></tr>
-            <tr><td>Checked it</td><td>You found the AI's mistakes and the errors planted in the practice data</td><td class="num">3</td></tr>
+            <tr><td>Checked it</td><td>You found the Artificial Intelligence (AI) tool's mistakes and the errors planted in the practice data</td><td class="num">3</td></tr>
             <tr><td>Own words</td><td>Your reflection is in your own voice, uses the prompts, and shows what you learned</td><td class="num">3</td></tr>
           </tbody>
           <tfoot><tr><td>Total</td><td></td><td class="num">10</td></tr></tfoot>
@@ -79,8 +79,21 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>© 2026 Chart Academy</p>
-      <p>AI for Workforce Readiness · <a href="https://www.thechartacademy.com">thechartacademy.com</a></p>
+      <nav class="footer-map" aria-label="Site map">
+        <div>
+          <p class="footer-head">Course</p>
+          <ul><li><a href="index.html">Home</a></li><li><a href="getting-started.html">Getting Started</a></li><li><a href="grading.html" aria-current="page">Grading</a></li></ul>
+        </div>
+        <div>
+          <p class="footer-head">Learn</p>
+          <ul><li><a href="lessons.html">Lessons</a></li><li><a href="agents.html">Agent Labs</a></li><li><a href="final-project.html">Final Project</a></li></ul>
+        </div>
+      </nav>
+      <a class="to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      <div class="footer-meta">
+        <p>© 2026 Chart Academy</p>
+        <p>AI for Workforce Readiness · <a href="https://www.thechartacademy.com">thechartacademy.com</a></p>
+      </div>
     </div>
   </footer>
   <script src="js/theme.js"></script>
