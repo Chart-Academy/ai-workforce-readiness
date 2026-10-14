@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — Getting Started as pre-work lesson
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** main
+- **Prompt:**
+  > The getting started page is good. Can you make it  as the first lesson, which can be considered to be pre-work.
+- **Result:** Added a "Pre-work" section at the top of `views/lessons.html` with "Lesson 0 · Getting Started". It summarizes the four accounts, how class works, the own-words rule, and the AI ground rules, gives a four-step "Before the first class" checklist, and links to the full Getting Started page. Added "00 Getting Started" to the home page course plan (header now "Pre-work + 10"), and the Getting Started page eyebrow now reads "Lesson 0 · Pre-work".
+- **Notes:** Numbered 0 so Lessons 1–10 keep their numbers (slides, files, grading). Nothing to upload, since the course has no homework.
+
 ### 2026-10-14 — Slide text unselectable, controls clickable
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** main
