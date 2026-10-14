@@ -18,6 +18,30 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — Applied skills slides and practice files
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** content-revision
+- **Prompt:**
+  > Sounds good. You can add the slides and lesson documents to the Applied Skills module.
+- **Result:** Created five slide decks in `views/lessons/slides/`: `lesson6-microsoft-word.html` (9 slides), `lesson7-microsoft-excel.html` (9), `lesson8-resume-writing.html` (9), `lesson9-job-searching.html` (9), and `lesson10-note-taking.html` (8). Created eight practice files in `public/data/`: `lesson6-safety-notice-messy.docx`, `lesson7-timesheet-messy.xlsx`, `lesson8-resume-checklist.docx`, `lesson8-resume-starter.docx`, `lesson9-search-notes-messy.docx`, `lesson9-job-listings.xlsx`, `lesson10-meeting-notes-messy.docx`, and `lesson10-meeting-transcript.docx`. Linked them all from `views/lessons.html` and added a few slide styles to `views/labs/slides/slides.css`.
+- **Notes:** Each practice file starts with the usual "AI Instructions" line. Planted problems: Lesson 6 has five fonts, lines spaced by hand, and three typos (Emergancy, EXTINGUSHERS, recieve). Lesson 7 has hours typed as text, a hard-coded total, a total range that skips the last row, and a duplicate name with a trailing space. Lesson 9 has 3 good fits, 1 borderline, 5 that miss a must-have, and 3 scams. Lesson 10's notes have the wrong training day and an outdated 24-hour swap rule, which the transcript corrects to 48 hours at the end. The transcript is about three pages, so the lesson text now says "three pages."
+
+### 2026-10-14 — Applied skills lessons (draft)
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** content-revision
+- **Prompt:**
+  > if you look at the course plan, we have these 5 "topics". What else can or should be explored/expanded on?
+
+  > OK. There are a few things that I agree with: there needs to be some "applied lessons". That can be a separate section of lessons focusing on using the Microsoft Suite (primarilly word and excel), resume writing, job searching, and note-taking and organization. These lessons can be slightly longer in length, and include real-world problems.
+
+  Choices made in follow-up questions: Word and Excel as separate lessons; a new Module 4 numbered Lessons 6–10; lesson entries first, with slides and practice files after review; update the home page course plan but not the grading page.
+- **Result:** Added "Module 4 · Applied skills" to `views/lessons.html` with Lessons 6–10: Microsoft Word, Microsoft Excel, Résumé Writing, Job Searching, and Note-taking and Organization. Each has topics, a real-world problem, an in-class assessment, own-words prompts, and an upload line. Added Lessons 6–10 to the home page course plan (10 total). Widened the lesson number column so "Lesson 10" fits.
+  Follow-up:
+  > This looks good so far. For the resume-building lesson, can that be personalized to help build and strengthen a student's existing resume?
+
+  Rewrote Lesson 8 around each student's own résumé. Students bring their current résumé, or use a starter worksheet if they don't have one, and remove contact details before sharing with AI. They review it with AI against a checklist, make the top three changes themselves, and tailor a copy to a real job posting. The Jordan example was removed. The practice files are now `lesson8-resume-checklist.docx` and `lesson8-resume-starter.docx`.
+- **Notes:** Practice files and slides are marked "coming soon" and haven't been created. The grading page still says "Lessons 1–5."
+
 ### 2026-10-14 — Footer sitemap
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** content-revision

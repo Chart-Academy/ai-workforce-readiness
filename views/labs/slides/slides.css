@@ -229,7 +229,7 @@ body {
 .slide .box p, .slide .box li { max-width: none; font-size: clamp(1rem, 1.6vw, 1.2rem); }
 .slide .label { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 .slide .mono { font-family: var(--font-mono); font-size: clamp(0.9rem, 1.4vw, 1.05rem); line-height: 1.6; }
-.slide .notes { white-space: pre-line; }
+.slide .notes { white-space: pre-wrap; }
 
 .compare.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 @media (max-width: 800px) { .compare.even { grid-template-columns: 1fr; } }
@@ -253,3 +253,12 @@ body {
 .slide.assess p, .slide.assess li { font-size: clamp(1rem, 1.7vw, 1.3rem); max-width: 60ch; }
 .slide.assess .files li { font-size: clamp(0.85rem, 1.4vw, 1.05rem); }
 .slide.assess .ai-note { font-size: clamp(0.85rem, 1.3vw, 1rem); }
+
+/* Applied skills decks (Lessons 6–10). */
+.slide kbd { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface); border: 1px solid var(--line); border-bottom-width: 3px; border-radius: 5px; padding: 0.05em 0.4em; }
+.slide .path { font-family: var(--font-mono); font-size: 0.9em; color: var(--brand); }
+.slide td.num, .slide th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.slide td.text-num { color: var(--accent); font-weight: 700; text-align: left; }
+.slide .box table { font-size: clamp(0.85rem, 1.4vw, 1.05rem); }
+.slide .files { display: flex; }
+.art .grid { fill: none; stroke: var(--line); stroke-width: 2; }

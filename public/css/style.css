@@ -483,6 +483,12 @@ section+section {
   width: 100%;
 }
 
+.module-note {
+  width: 100%;
+  margin: 0;
+  color: var(--muted);
+}
+
 .lesson {
   border-top: 1px solid var(--line);
 }
@@ -495,7 +501,7 @@ section+section {
   list-style: none;
   cursor: pointer;
   display: grid;
-  grid-template-columns: 4.5rem 1fr auto;
+  grid-template-columns: 5rem 1fr auto;
   gap: 1rem;
   align-items: baseline;
   padding-block: 1rem;
@@ -510,6 +516,7 @@ section+section {
 }
 
 .lesson-num {
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: var(--muted);
@@ -534,8 +541,8 @@ section+section {
 .lesson-body {
   display: grid;
   gap: 0.9rem;
-  padding: 0 0 1.25rem 5.5rem;
-  max-width: calc(var(--measure) + 5.5rem);
+  padding: 0 0 1.25rem 6rem;
+  max-width: calc(var(--measure) + 6rem);
 }
 
 .lesson-body ul {
