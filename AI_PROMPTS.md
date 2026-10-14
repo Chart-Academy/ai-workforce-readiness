@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — Collapsible Agent Labs
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** content-revision
+- **Prompt:**
+  > In the Agent Lab page, make the labs collapable as an accordian-style element. When collapsed, there should be a related picture visible in addition to the field, tools, and lessions learned details found on the left.
+- **Result:** Each lab in `views/agents.html` is now a collapsible card. When collapsed it shows the work-order stub (Field, Tools, Lesson), the title and one-line description, a small themed picture drawn in the site colors, and a + toggle. Expanding shows the starter instructions, materials, and assessment. The WO-07 "coming soon" card stays a plain card with a placeholder picture. Added `public/js/labs.js` so links like `agents.html#calendar` (used by the lab slides' "Back to Agent Labs") open that lab. Styles are in `public/css/style.css`.
+- **Notes:** All labs start collapsed. The starter-instruction text was checked to be unchanged.
+
 ### 2026-10-14 — Applied skills slides and practice files
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** content-revision

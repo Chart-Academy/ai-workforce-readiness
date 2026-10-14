@@ -590,10 +590,103 @@ section+section {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  overflow: hidden;
+  scroll-margin-top: 6rem;
+}
+
+.order-head,
+.order-detail {
   display: grid;
   grid-template-columns: 13rem minmax(0, 1fr);
-  overflow: hidden;
 }
+
+.order-head {
+  grid-template-columns: 13rem minmax(0, 1fr) 9rem 2.5rem;
+  align-items: stretch;
+}
+
+summary.order-head {
+  list-style: none;
+  cursor: pointer;
+}
+
+summary.order-head::-webkit-details-marker {
+  display: none;
+}
+
+summary.order-head:hover h3 {
+  color: var(--brand);
+}
+
+.order-intro {
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  gap: 0.5rem;
+  align-content: center;
+}
+
+.order-intro h3 {
+  font-size: var(--step-2);
+  margin: 0;
+}
+
+.order-intro p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.order-art {
+  width: 100%;
+  height: auto;
+  align-self: center;
+  padding-block: 0.75rem;
+}
+
+.order-toggle {
+  align-self: start;
+  padding-top: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+  justify-self: center;
+}
+
+.order[open] .order-toggle {
+  transform: rotate(45deg);
+}
+
+.order[open] .order-head {
+  border-bottom: 1px solid var(--line);
+}
+
+/* The detail row keeps the stub's colored band running down the left. */
+.order-detail::before {
+  content: "";
+  background: var(--brand-soft);
+  border-right: 2px dashed var(--line);
+}
+
+.order-art .oa-card { fill: var(--surface); stroke: var(--line); stroke-width: 2; }
+.order-art .oa-soft { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 1.5; }
+.order-art .oa-brand { fill: var(--brand); }
+.order-art .oa-accent { fill: var(--accent); }
+.order-art .oa-head { fill: var(--brand-soft); }
+.order-art .oa-line { stroke: var(--brand); stroke-width: 4; stroke-linecap: round; opacity: 0.55; }
+.order-art .oa-line-w { stroke: var(--surface); stroke-width: 4; stroke-linecap: round; }
+.order-art .oa-bubble { fill: var(--brand); }
+.order-art .oa-grid { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.order-art .oa-stroke { fill: none; stroke: var(--brand); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.order-art .oa-route { fill: none; stroke: var(--muted); stroke-width: 3; stroke-dasharray: 6 6; stroke-linecap: round; }
+.order-art .oa-tape { stroke: var(--brand); stroke-width: 3; }
+.order-art .oa-lens { fill: var(--surface); stroke: var(--brand); stroke-width: 6; }
+.order-art .oa-handle { stroke: var(--brand); stroke-width: 9; stroke-linecap: round; }
+.order-art .oa-check { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.order-art .oa-ok { fill: var(--accent); }
+.order-art .oa-check-sm { fill: none; stroke: var(--on-accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.order-art .oa-alert { fill: var(--accent); }
+.order-art .oa-alert-mark { stroke: var(--on-accent); stroke-width: 2.5; stroke-linecap: round; }
+.order-art .oa-dashed { fill: none; stroke: var(--line); stroke-width: 3; stroke-dasharray: 8 6; }
 
 .order-stub {
   background: var(--brand-soft);
@@ -669,14 +762,46 @@ section+section {
   border-style: dashed;
 }
 
+.order.is-open .order-head {
+  grid-template-columns: 13rem minmax(0, 1fr) 9rem;
+}
+
 @media (max-width: 700px) {
-  .order {
+  .order-head,
+  .order.is-open .order-head {
+    grid-template-columns: minmax(0, 1fr) 6rem;
+  }
+
+  .order-detail {
     grid-template-columns: 1fr;
   }
 
+  .order-detail::before {
+    display: none;
+  }
+
   .order-stub {
+    grid-column: 1 / -1;
     border-right: 0;
     border-bottom: 2px dashed var(--line);
+  }
+
+  .order-intro {
+    padding: 1rem;
+  }
+
+  .order-art {
+    padding: 0.5rem 0.75rem 0.5rem 0;
+  }
+
+  .order-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 0;
+  }
+
+  .order-head {
+    position: relative;
   }
 }
 
