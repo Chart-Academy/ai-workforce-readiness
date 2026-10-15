@@ -13,7 +13,7 @@
   /* logo red */
   --on-accent: #ffffff;
   --road-line: #ffffff;
-  --ai-pink: #d1166f;
+  --ai-pink: #3a56a5;      /* AI Instructions notes: logo blue */
   /* AI Instructions notes */
 
   --font-display: "Lexend", "Segoe UI", system-ui, sans-serif;
@@ -41,7 +41,7 @@
     --accent: #e8414e;
     --on-accent: #ffffff;
     --road-line: #e7ebf6;
-    --ai-pink: #ff6fb3;
+    --ai-pink: #8ea4e6;
     color-scheme: dark;
   }
 }
@@ -57,7 +57,7 @@
   --accent: #e8414e;
   --on-accent: #ffffff;
   --road-line: #e7ebf6;
-  --ai-pink: #ff6fb3;
+  --ai-pink: #8ea4e6;
   color-scheme: dark;
 }
 
@@ -1194,3 +1194,36 @@ main > .callout { margin-top: 2.5rem; }
 .lesson0-head .walk-art { max-width: 340px; }
 .lesson0-title { font-size: var(--step-2); margin-top: 0.5rem; }
 .lesson0 .readiness-text h2 { font-size: var(--step-2); }
+
+/* ---------- Lesson layout: objectives → teacher's slides → in-class assignment ---------- */
+.lesson-part {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+.part-title {
+  font-size: var(--step-2);
+  color: var(--brand);
+}
+.objectives-lead { font-weight: 700; }
+.objectives {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: grid;
+  gap: 0.45rem;
+  max-width: var(--measure);
+}
+.objectives li::marker { color: var(--accent); font-weight: 700; }
+.slide-frame {
+  position: relative;
+  width: 100%;
+  max-width: 54rem;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.slide-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 640px) { .slide-frame { aspect-ratio: 3 / 4; } }

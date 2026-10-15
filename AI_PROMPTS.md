@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Lessons: learning objectives, teacher's slides, in-class assignment
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Start this and all lessons with "The learner will be able to…" (measurable learning objectives). Then the teacher's slides in a section, then the in-class assignment; don't call them assessments. Remove the repeated AI instructions; add it once. Use the Chart Academy logo blue for the AI instructions.
+- **Result:** Lessons 1–10 in `lessons.html` now go intro → Learning objectives → Teacher's slides (deck embedded in an iframe + full-screen button) → In-class assignment. One AI note per lesson (between the steps, now also covering the own-words section). Each lesson deck got a "Learning objectives" slide after the title and "In-class assignment" on the last slide. AI notes use logo blue site-wide (`--ai-pink` token now #3a56a5 / #8ea4e6 dark, in `style.css` and `slides.css`). `slides.js` opens links in the full window when a deck is embedded.
+- **Notes:** Canvas descriptions for Lessons 1–10 still need the same changes (pending batch update).
+
 ### 2026-10-15 — Lesson 0 mirrors Getting Started
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main

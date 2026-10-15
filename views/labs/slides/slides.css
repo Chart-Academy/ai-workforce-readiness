@@ -8,7 +8,7 @@
   --brand: #3a56a5;
   --brand-soft: #e6ebf7;
   --accent: #d81f2e;
-  --ai-pink: #d1166f;
+  --ai-pink: #3a56a5;
   --road-line: #ffffff;
   --role: #3a56a5;
   --task: #b45309;
@@ -21,14 +21,14 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #0f1529; --surface: #171f39; --ink: #e7ebf6; --muted: #a3acc6; --line: #2b3554;
-    --brand: #8ea4e6; --brand-soft: #1e2a4d; --accent: #e8414e; --ai-pink: #ff6fb3; --road-line: #e7ebf6;
+    --brand: #8ea4e6; --brand-soft: #1e2a4d; --accent: #e8414e; --ai-pink: #8ea4e6; --road-line: #e7ebf6;
     --role: #8ea4e6; --task: #f0a24a; --context: #4fc8bd; --format: #b69cff;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #0f1529; --surface: #171f39; --ink: #e7ebf6; --muted: #a3acc6; --line: #2b3554;
-  --brand: #8ea4e6; --brand-soft: #1e2a4d; --accent: #e8414e; --ai-pink: #ff6fb3; --road-line: #e7ebf6;
+  --brand: #8ea4e6; --brand-soft: #1e2a4d; --accent: #e8414e; --ai-pink: #8ea4e6; --road-line: #e7ebf6;
     --role: #8ea4e6; --task: #f0a24a; --context: #4fc8bd; --format: #b69cff;
   color-scheme: dark;
 }
@@ -294,3 +294,8 @@ button {
   text-decoration: none;
 }
 .slide .submit-canvas a:hover { text-decoration: underline; }
+
+/* Learning objectives slide */
+.slide .objectives { margin: 0; padding-left: 1.4em; display: grid; gap: 0.6em; }
+.slide .objectives li { max-width: 52ch; }
+.slide .objectives li::marker { color: var(--accent); font-weight: 700; }

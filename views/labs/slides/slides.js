@@ -32,3 +32,13 @@
   var start = parseInt((location.hash || "").slice(1), 10);
   show(isNaN(start) ? 0 : start - 1);
 })();
+
+// When a deck is shown inside a lesson page, links open in the full window instead of inside the small viewer.
+(function () {
+  if (window.self !== window.top) {
+    document.documentElement.classList.add('embedded');
+    Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) {
+      if (!a.target) a.target = '_top';
+    });
+  }
+})();
