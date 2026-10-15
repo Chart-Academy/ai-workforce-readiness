@@ -986,6 +986,11 @@ tfoot td {
   border-color: var(--brand);
 }
 
+.files .all a {
+  border-color: var(--brand);
+  font-weight: 700;
+}
+
 .own-words {
   background: var(--brand-soft);
   border-radius: var(--radius);

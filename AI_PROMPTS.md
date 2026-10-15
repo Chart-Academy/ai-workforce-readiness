@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Organize practice files and add zip downloads
+- **Tool / model:** Claude Code (Opus 5.5)
+- **Branch:** main
+- **Prompt:**
+  > some lessons and work orders have multiple documents that need to be downloaded in order for a student to complete a task. Can you organize the documents in public/data/ in folders and provide compressed versions for lessons and work orders that have multiple files? I still would like the option to download individual files.
+- **Result:** Moved practice files into `public/data/lessons/lessonN/` and `public/data/work-orders/woNN/`. Added `scripts/build-zips.sh` (`npm run build:zips`), which builds `<id>-files.zip` for Lessons 8–10 and WO-02 through WO-05. Updated every link in `lessons.html`, `agents.html`, and the slide decks. Added a "Download all (.zip)" chip at the start of each file list, styled in `style.css` and `slides.css`.
+- **Notes:** `wo01-draft-brief-phishing.docx` is used only in Lesson 3, so it lives in `lessons/lesson3/` under its original name. The WO-03 résumé and job posting stay in `work-orders/wo03/`. The WO-04 and WO-05 zips include copies of them. Rerun `npm run build:zips` after editing any file that goes into a zip.
+
 ### 2026-10-14 — AI Instructions note between assessment steps
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
