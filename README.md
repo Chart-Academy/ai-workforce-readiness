@@ -11,7 +11,7 @@ Course site for **AI for Workforce Readiness**: lessons, agent labs, the final p
 ### Install and run locally
 
 ```bash
-git clone https://github.com/cedricthompson/ai-workforce-readiness.git
+git clone https://github.com/Chart-Academy/ai-workforce-readiness.git
 cd ai-workforce-readiness
 npm install
 npm start
