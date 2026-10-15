@@ -25,6 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build download-all zips
+        run: bash scripts/build-zips.sh
+
       - name: Assemble site
         run: |
           mkdir -p _site

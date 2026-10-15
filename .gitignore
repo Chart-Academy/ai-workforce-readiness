@@ -1,5 +1,6 @@
 # project
 instructor-only/
+public/data/**/*-files.zip
 
 # macOS
 .DS_Store

@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ."
+    "start": "nodemon .",
+    "build:zips": "bash scripts/build-zips.sh",
+    "prestart": "npm run build:zips"
   },
   "repository": {
     "type": "git",
