@@ -18,6 +18,17 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Job Placement Capstone, job boards, and page graphics
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Part B of the final assessment should be a capstone to accelerate job placement using the student's own résumé in the job search. Remove agent 07. I want graphics on each page. Bring in job board accounts (Indeed and DC Government Careers) on day one and use them in the job search lessons and labs.
+- **Result:**
+  - `final-assessment.html`: Part B is now the **Job Placement Capstone** (target job, tailored résumé, employer research, 10-opening pipeline with at least one application, interview prep), with a résumé/job-posting/HIRED-stamp illustration. `grading.html` uses the new name.
+  - `lessons.html`: road-map illustration (stops 0–10 to a graduation cap). WO-07 was already gone.
+  - Job boards: "Set up your job search accounts" section (Indeed, DC Government Careers) on Getting Started and Lesson 0; job-board steps in Lessons 8–9, WO-03, WO-04, and the capstone (page and slides); WO-04 starter prompt says never log in to a job site or apply for the student; new ground rule "Search and apply for jobs yourself."
+- **Notes:** Canvas needs the matching update (AllInOne update 5 → "Canvas: update assignment descriptions").
+
 ### 2026-10-15 — Grading page: teacher grading illustration
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main

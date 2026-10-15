@@ -1465,3 +1465,45 @@ ol.objectives li::marker { color: var(--accent); font-weight: 700; }
   .grade-art .ga-check { stroke-dasharray: 40; animation: draw-check 3.5s ease-in-out infinite; }
   .grade-art .ga-pen, .grade-art .ga-hand { animation: pen-tap 3.5s ease-in-out infinite; }
 }
+
+/* Lessons page: road map from Lesson 0 to graduation */
+.road-art { width: 100%; max-width: 440px; height: auto; justify-self: center; }
+.road-art .rm-road { fill: none; stroke: var(--brand); stroke-width: 14; stroke-linecap: round; }
+.road-art .rm-dash { fill: none; stroke: #ffffff; stroke-width: 2; stroke-dasharray: 7 7; }
+.road-art .rm-stop circle { fill: var(--surface); stroke: var(--brand); stroke-width: 2.5; }
+.road-art .rm-stop text { fill: var(--brand); font-family: var(--font-display); font-size: 9px; font-weight: 700; }
+.road-art .rm-stop.lab circle, .road-art .rm-legend circle { fill: var(--accent); stroke: var(--accent); }
+.road-art .rm-stop.lab text { fill: #ffffff; }
+.road-art .rm-legend text { fill: var(--muted); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; }
+.road-art .rm-cap path { fill: var(--accent); }
+.road-art .rm-cap .rm-tassel { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; }
+@keyframes cap-bob { 0%, 100% { transform: translate(354px, 30px); } 50% { transform: translate(354px, 24px); } }
+@media (prefers-reduced-motion: no-preference) { .road-art .rm-cap { animation: cap-bob 2.4s ease-in-out infinite; } }
+
+/* Final Assessment: résumé, job posting, and a HIRED stamp */
+.hire-art { width: 100%; max-width: 440px; height: auto; justify-self: center; overflow: visible; }
+.hire-art .ha-shadow { fill: var(--line); }
+.hire-art .ha-paper, .hire-art .ha-post { fill: #ffffff; stroke: var(--line); stroke-width: 2; }
+.hire-art .ha-photo { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 2; }
+.hire-art .ha-name { stroke: var(--brand); stroke-width: 6; stroke-linecap: round; }
+.hire-art .ha-line { stroke: #c7cfe3; stroke-width: 4; stroke-linecap: round; }
+.hire-art .ha-tick { fill: none; stroke: #2f8f6b; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.hire-art .ha-post-head { fill: var(--brand); }
+.hire-art .ha-post-text { stroke: #ffffff; stroke-width: 6; stroke-linecap: round; }
+.hire-art .ha-lens { fill: rgba(58, 86, 165, 0.12); stroke: var(--ink); stroke-width: 5; }
+.hire-art .ha-handle { stroke: var(--ink); stroke-width: 9; stroke-linecap: round; }
+.hire-art .ha-stamp rect { fill: rgba(216, 31, 46, 0.08); stroke: var(--accent); stroke-width: 4; }
+.hire-art .ha-stamp text { fill: var(--accent); font-family: var(--font-display); font-size: 30px; font-weight: 700; letter-spacing: 0.12em; }
+.hire-art .ha-stamp { transform-origin: 182px 119px; transform: rotate(-12deg); }
+@keyframes stamp {
+  0%, 55%  { transform: rotate(-12deg) scale(1.6); opacity: 0; }
+  65%      { transform: rotate(-12deg) scale(0.92); opacity: 1; }
+  72%, 100% { transform: rotate(-12deg) scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) { .hire-art .ha-stamp { animation: stamp 4s ease-out infinite; } }
+
+/* Capstone section */
+.capstone { background: var(--brand-soft); border: 1px solid var(--line); border-left: 6px solid var(--accent); border-radius: 12px; padding: 1.5rem 1.75rem; }
+.capstone > .eyebrow { color: var(--accent); }
+.gs-cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 640px) { .gs-cards.two { grid-template-columns: 1fr; } }
