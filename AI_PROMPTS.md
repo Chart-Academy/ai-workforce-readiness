@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Grading page: teacher grading illustration
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > On the grading page, add a gradebook graphic, maybe a teacher grading papers.
+- **Result:** `grading.html` header now uses the two-column `gs-head` layout with an inline SVG: a teacher at a desk with a red pen, graded papers (9/10) with a check mark that draws itself, an open gradebook with grades, and an apple. Animation stops when prefers-reduced-motion. Styles: `.grade-art` in `public/css/style.css`.
+- **Notes:** No "Connect with us" section wanted.
+
 ### 2026-10-15 — "Class slides" wording; Canvas matches the lesson sections
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main

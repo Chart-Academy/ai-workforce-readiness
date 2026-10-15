@@ -1427,3 +1427,41 @@ ol.objectives li::marker { color: var(--accent); font-weight: 700; }
 .plan-intro { display: grid; gap: 0.85rem; position: sticky; top: calc(5rem + env(safe-area-inset-top, 0px)); }
 @media (max-width: 860px) { .plan-intro { position: static; } }
 .plan-section .timecard { max-width: none; }
+
+/* Grading page: teacher grading papers next to a gradebook */
+.grade-art { width: 100%; max-width: 440px; height: auto; justify-self: center; }
+.grade-art .ga-desk { fill: #b98a5a; }
+.grade-art .ga-leg { stroke: #8f6640; stroke-width: 6; stroke-linecap: round; }
+.grade-art .ga-head { fill: #a86b3c; }
+.grade-art .ga-hair { fill: #2a1d16; }
+.grade-art .ga-glasses { fill: none; stroke: #16213f; stroke-width: 1.8; }
+.grade-art .ga-body { fill: var(--brand); }
+.grade-art .ga-collar { fill: none; stroke: #ffffff; stroke-width: 3; stroke-linejoin: round; }
+.grade-art .ga-arm { fill: none; stroke: var(--brand); stroke-width: 12; stroke-linecap: round; }
+.grade-art .ga-hand { fill: #a86b3c; }
+.grade-art .ga-pen { stroke: var(--accent); stroke-width: 4; stroke-linecap: round; }
+.grade-art .ga-paper { fill: #ffffff; stroke: var(--line); stroke-width: 1.5; }
+.grade-art .ga-paper.back { fill: #f3f5fb; }
+.grade-art .ga-lines { stroke: #c7cfe3; stroke-width: 3; stroke-linecap: round; }
+.grade-art .ga-check { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.grade-art .ga-score { fill: var(--accent); font-family: var(--font-display); font-size: 11px; font-weight: 700; }
+.grade-art .ga-book { fill: #ffffff; stroke: var(--brand); stroke-width: 2.5; stroke-linejoin: round; }
+.grade-art .ga-spine { stroke: var(--brand); stroke-width: 3; }
+.grade-art .ga-grid { stroke: #c7cfe3; stroke-width: 1.4; }
+.grade-art .ga-a { fill: var(--accent); font-family: var(--font-display); font-size: 9.5px; font-weight: 700; }
+.grade-art .ga-apple { fill: var(--accent); }
+.grade-art .ga-leaf { fill: #2f8f6b; }
+@keyframes draw-check {
+  0%, 20%  { stroke-dashoffset: 40; }
+  45%, 85% { stroke-dashoffset: 0; }
+  100%     { stroke-dashoffset: 40; }
+}
+@keyframes pen-tap {
+  0%, 20%, 50%, 100% { transform: translate(0, 0); }
+  30% { transform: translate(3px, -3px); }
+  40% { transform: translate(6px, 1px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .grade-art .ga-check { stroke-dasharray: 40; animation: draw-check 3.5s ease-in-out infinite; }
+  .grade-art .ga-pen, .grade-art .ga-hand { animation: pen-tap 3.5s ease-in-out infinite; }
+}
