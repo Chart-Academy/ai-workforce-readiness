@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Readiness Check sign-in with Gmail
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Student ID could be entered wrong. Use verified Gmail (option 1); we will upload the Gmails with Student ID in Lesson 0.
+- **Result:** Lesson 0 (`lessons.html`), `getting-started.html`, and `final-assessment.html` now tell students to give their Gmail on day one and sign in with it for both Readiness Checks. (The grading script itself lives in the private `instructor-only/` folder.)
+- **Notes:**
+
 ### 2026-10-15 — Final Project replaced by Final Assessment; Lesson 0 on day one
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
