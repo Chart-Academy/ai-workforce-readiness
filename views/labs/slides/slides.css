@@ -282,3 +282,15 @@ button {
 /* AI Instructions note placed between assessment steps, so a screenshot of the steps includes it */
 .slide .ai-step { list-style: none; margin-left: -1.4em; }
 .slide .ai-step .ai-note { max-width: none; }
+
+/* "Submit in Canvas" link on the assessment slide */
+.slide .submit-canvas a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.slide .submit-canvas a:hover { text-decoration: underline; }

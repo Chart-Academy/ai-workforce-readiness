@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — "Submit in Canvas" buttons
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Create a Canvas assignment for every lesson so students can submit their responses and have automatic grading. [Then pasted the 17 Canvas assignment links created by the grading script.]
+- **Result:** Added a "Submit in Canvas" button to each in-class assessment: Lessons 1–10 (`lessons.html`), WO-01 to WO-06 (`agents.html`), Final Assessment Part B (`final-assessment.html`), and the assessment slide of all 16 slide decks. Canvas course 408, assignments 2520–2536. Styles: `.submit-canvas` in `public/css/style.css` and `views/labs/slides/slides.css`.
+- **Notes:** The Canvas assignments, rubrics, and automatic grading are set up by the private grading script in `instructor-only/` (Assignments.gs is generated from these pages, so re-run the generator if assessment steps change).
+
 ### 2026-10-15 — Readiness Check sign-in with Gmail
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main

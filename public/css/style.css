@@ -1056,3 +1056,6 @@ tfoot td {
 
 /* AI Instructions note placed between assessment steps, so a screenshot of the steps includes it */
 .ai-step { list-style: none; margin-left: -1.3rem; padding-block: 0.25rem; }
+
+/* "Submit in Canvas" button inside each assessment */
+.submit-canvas { margin: 0.25rem 0 0; }
