@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Final Readiness Check button; open/close controls
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > For Part A of the final assessment, list the link now but keep it from being turned on yet. Add the open and close options for the final readiness check.
+- **Result:** `final-assessment.html` Part A has a "Start Part A: Readiness Check" button to the Final Google Form, with a note that it opens during the last class. The private grading script (AllInOne update 6) adds menu options to open/close the Final and Day One Readiness Checks (Google Forms "Accepting responses", with a custom closed message).
+- **Notes:** Close the Final form now; open it in the last class.
+
 ### 2026-10-15 — Job Placement Capstone, job boards, and page graphics
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
