@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Lesson 0 mirrors Getting Started
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Under Lesson 0, please mimic the Getting Started tab.
+- **Result:** Lesson 0 on `lessons.html` reuses the Getting Started pieces: the Chart Academy walking animation, the Day One Readiness Check box and button, account cards, Learn/Build/Assess cards, and ground rules, plus a link to the full page. Small `.lesson0` styles in `public/css/style.css`.
+- **Notes:** If Getting Started changes, copy the same pieces into Lesson 0 so they stay identical.
+
 ### 2026-10-15 — Getting Started redesign and Day One Readiness Check link
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main

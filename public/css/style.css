@@ -1187,3 +1187,10 @@ tfoot td {
 .rule-list li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.75rem; align-items: start; }
 .rule-list .gs-icon { width: 1.75rem; height: 1.75rem; stroke: var(--accent); }
 main > .callout { margin-top: 2.5rem; }
+
+/* Lesson 0 on the Lessons page reuses the Getting Started pieces */
+.lesson-body.lesson0 { padding-left: 0; max-width: none; gap: 1.25rem; }
+.lesson0-head { gap: 1.5rem; }
+.lesson0-head .walk-art { max-width: 340px; }
+.lesson0-title { font-size: var(--step-2); margin-top: 0.5rem; }
+.lesson0 .readiness-text h2 { font-size: var(--step-2); }
