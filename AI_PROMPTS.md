@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Final Project replaced by Final Assessment; Lesson 0 on day one
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Replace the final project with the post-assessment so students only need one assessment, building in the same components. Lesson Zero happens on the first day of class, so remove the "before class" info.
+- **Result:** Renamed `final-project.html` to `final-assessment.html` (Part A: Readiness Check, no AI, parallel to the day-one check; Part B: Applied Tasks with AI). Left `final-project.html` as a redirect so old links work. Updated nav and footer on every page. Lesson 0 is now "Day one / First class" with the Readiness Check, on `lessons.html`, `getting-started.html`, and the home page plan. Grading: Final Assessment 25% (Part A 10%, Part B 15%), Lessons 1–10, new "Readiness Check and growth" section.
+- **Notes:** Readiness Check link is a placeholder ("your instructor shares the link in class") until the Google Form and Smartsheet connection are built.
+
 ### 2026-10-15 — Organize practice files and add zip downloads
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** main
