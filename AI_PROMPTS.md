@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Submission and review notes for students
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Go ahead and finish since the grading has worked.
+- **Result:** `getting-started.html` explains how to submit with the "Submit in Canvas" button and share Google links as Viewer. `grading.html` has a new "How your work is reviewed" section: AI gives a first score with the rubric, a teacher reviews every grade before release, unshared links aren't graded, remove contact details from résumés.
+- **Notes:** The grading script is now a single file (`instructor-only/readiness-check-script/AllInOne.gs`, built from `source/`).
+
 ### 2026-10-15 — "Submit in Canvas" buttons
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
