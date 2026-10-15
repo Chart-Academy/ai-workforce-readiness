@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Getting Started redesign and Day One Readiness Check link
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Add graphics and text boxes to Getting Started, with students walking into a school (Chart Academy) for motion. Add a pre-assessment section that links to the Day One form. Remove the link and references to the Final Assessment on this page; remove Final Assessment from the footer (keep it in the header).
+- **Result:** `getting-started.html`: animated SVG of students walking into "Chart Academy" (CSS keyframes, still when prefers-reduced-motion); "Day One Readiness Check" feature box with steps and a button to the Day One Google Form; account cards and Learn/Build/Assess cards with icons; boxed "Your words" and ground rules. Removed the Final Assessment reference from this page. Removed Final Assessment from the footer site map on all pages (menu unchanged). Styles under "Getting Started page" in `public/css/style.css`.
+- **Notes:** Day One form: https://docs.google.com/forms/d/e/1FAIpQLSc4rAcmgwjrZJp2pO-sQUdpwghnjYvbwfxB8LrVxjevGN2seg/viewform
+
 ### 2026-10-15 — Home page: audiences and job-search outcomes first
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main

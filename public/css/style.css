@@ -1080,3 +1080,110 @@ tfoot td {
 
 /* Short intro line under a section title */
 .section-lede { margin: -0.5rem 0 1.5rem; }
+
+/* ---------- Getting Started page ---------- */
+.gs-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+.gs-head-text { display: grid; gap: 0.75rem; min-width: 0; }
+@media (max-width: 760px) { .gs-head { grid-template-columns: 1fr; } }
+
+/* Students walking into a school */
+.walk-art { width: 100%; max-width: 420px; height: auto; justify-self: center; overflow: visible; }
+.walk-art .wa-ground { fill: var(--brand-soft); }
+.walk-art .wa-path { stroke: var(--line); stroke-width: 3; stroke-dasharray: 10 8; }
+.walk-art .wa-wall { fill: var(--surface); stroke: var(--brand); stroke-width: 3; }
+.walk-art .wa-roof { fill: var(--accent); }
+.walk-art .wa-pole { stroke: var(--brand); stroke-width: 3; }
+.walk-art .wa-flag { fill: var(--accent); }
+.walk-art .wa-win { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 2; }
+.walk-art .wa-door { fill: var(--brand); }
+.walk-art .wa-sign { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+.walk-art .wa-sign-text { fill: var(--accent); font-family: var(--font-display); font-size: 12px; font-weight: 600; font-variant: small-caps; letter-spacing: 0.04em; }
+.walk-art .wa-knob { fill: var(--surface); }
+.walk-art .wa-legs { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.walk-art .wa-pack { fill: var(--ink); opacity: 0.55; }
+.walk-art .b1 { fill: var(--brand); }
+.walk-art .b2 { fill: var(--accent); }
+.walk-art .b3 { fill: #2f8f6b; }
+.walk-art .w1 .wa-head { fill: #8d5524; }
+.walk-art .w2 .wa-head { fill: #e0ac69; }
+.walk-art .w3 .wa-head { fill: #c68642; }
+
+/* Resting positions (also used when motion is reduced) */
+.walk-art .w1 { transform: translate(150px, 196px); }
+.walk-art .w2 { transform: translate(110px, 196px); }
+.walk-art .w3 { transform: translate(70px, 196px); }
+
+@keyframes walk-in {
+  0%   { transform: translate(-30px, 196px); opacity: 0; }
+  6%   { opacity: 1; }
+  78%  { transform: translate(258px, 196px); opacity: 1; }
+  90%  { transform: translate(271px, 194px); opacity: 0; }
+  100% { transform: translate(271px, 194px); opacity: 0; }
+}
+@keyframes bob {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2.5px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .walk-art .walker { animation: walk-in 9s linear infinite; opacity: 0; }
+  .walk-art .w1 { animation-delay: 0s; }
+  .walk-art .w2 { animation-delay: 3s; }
+  .walk-art .w3 { animation-delay: 6s; }
+  .walk-art .bob { animation: bob 0.35s ease-in-out infinite alternate; }
+}
+
+/* Readiness Check feature box */
+.readiness-box {
+  background: var(--brand-soft);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+}
+.readiness-text { display: grid; gap: 0.85rem; max-width: var(--measure); }
+.readiness-text h2 { font-size: var(--step-3); }
+.readiness-steps { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.4rem; }
+.readiness-text .btn { font-size: 1.05rem; padding: 0.85rem 1.4rem; }
+
+/* Icon cards */
+.gs-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+.gs-cards.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gs-cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 960px) { .gs-cards.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .gs-cards.four, .gs-cards.three { grid-template-columns: 1fr; } }
+.gs-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--brand);
+  border-radius: 8px;
+  padding: 1.1rem 1.15rem 1.25rem;
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  min-width: 0;
+}
+.gs-card h3 { font-size: var(--step-1); }
+.gs-card p { color: var(--muted); }
+.gs-icon {
+  width: 2.25rem; height: 2.25rem;
+  fill: none; stroke: var(--brand); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.gs-flow .gs-card:last-child { border-top-color: var(--accent); }
+.gs-flow .gs-card:last-child .gs-icon { stroke: var(--accent); }
+
+/* Boxed sections */
+.gs-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+}
+.rule-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; max-width: var(--measure); }
+.rule-list li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.75rem; align-items: start; }
+.rule-list .gs-icon { width: 1.75rem; height: 1.75rem; stroke: var(--accent); }
+main > .callout { margin-top: 2.5rem; }
