@@ -1195,26 +1195,43 @@ main > .callout { margin-top: 2.5rem; }
 .lesson0-title { font-size: var(--step-2); margin-top: 0.5rem; }
 .lesson0 .readiness-text h2 { font-size: var(--step-2); }
 
-/* ---------- Lesson layout: objectives → teacher's slides → in-class assignment ---------- */
+/* ---------- Lesson layout: click-to-open Objectives → Teacher's slides → In-class assignment ---------- */
 .lesson-part {
-  display: grid;
-  gap: 0.75rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
 }
-.part-title {
-  font-size: var(--step-2);
+.lesson-part + .lesson-part { margin-top: -0.25rem; }
+.lesson-part > summary.part-title {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-1);
   color: var(--brand);
+  border-radius: 8px;
 }
+.lesson-part > summary.part-title::-webkit-details-marker { display: none; }
+.lesson-part > summary.part-title:hover { background: var(--brand-soft); }
+.lesson-part[open] > summary.part-title { border-bottom: 1px solid var(--line); border-radius: 8px 8px 0 0; }
+.part-toggle { font-family: var(--font-mono); font-size: 1.2rem; color: var(--muted); transition: transform 0.2s ease; }
+.lesson-part[open] .part-toggle { transform: rotate(45deg); }
+.part-body { display: grid; gap: 0.75rem; padding: 1rem 1.1rem 1.25rem; }
+.part-title { color: var(--brand); }
 .objectives-lead { font-weight: 700; }
-.objectives {
+ol.objectives {
   margin: 0;
   padding-left: 1.4rem;
   display: grid;
   gap: 0.45rem;
   max-width: var(--measure);
 }
-.objectives li::marker { color: var(--accent); font-weight: 700; }
+ol.objectives li::marker { color: var(--accent); font-weight: 700; }
 .slide-frame {
   position: relative;
   width: 100%;

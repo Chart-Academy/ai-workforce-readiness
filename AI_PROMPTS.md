@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Lesson sections as click-to-open panels
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > On the lesson pages, make the sections accordion style so you can click for objectives, slides, and in-class assignment.
+- **Result:** In `lessons.html`, each lesson's Learning objectives, Teacher's slides, and In-class assignment are now `<details class="lesson-part …">` panels (closed by default; slides load when opened). Styles in `public/css/style.css` (`.lesson-part`, `.part-title`, `.part-body`, `.part-toggle`); objectives list style scoped to `ol.objectives`.
+- **Notes:**
+
 ### 2026-10-15 — Lessons: learning objectives, teacher's slides, in-class assignment
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
