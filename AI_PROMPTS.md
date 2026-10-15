@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Home page redesign: hero band and distinct sections
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > On the home page, distinctively design the sections. The hero section needs to stand out and include the Start here button.
+- **Result:** `index.html`: hero moved out of `<main>` into a full-width blue `.hero-band` (white text, large red "Start here →" button, white outline secondary button, white logo/avatars card with shadow, dashed "road" edge). Sections get red eyebrow labels; outcomes are check-mark cards on a soft blue panel; course plan is a two-column layout with an intro, Learn → Build → Apply, and a "See all lessons" button beside the time card. New tokens `--hero-bg`/`--hero-bg-2` (navy in dark mode) and styles at the end of `public/css/style.css`.
+- **Notes:**
+
 ### 2026-10-15 — Diverse learner avatars on the home page
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
