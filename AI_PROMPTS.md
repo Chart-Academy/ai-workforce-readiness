@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Agent Labs moved into their lessons
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Assign the agent labs to the appropriate lesson, remove the labs from the heading, embed them under the lesson, and highlight where the agent labs fall.
+- **Result:** Each lab is now a red "Agent Lab · WO-0X" panel inside its lesson in `lessons.html`: WO-01 → Lesson 5, WO-02 → Lesson 7, WO-03 → Lesson 8, WO-04 and WO-05 → Lesson 9 (class extended that day), WO-06 → Lesson 10. Lessons with labs show an "Agent Lab" badge on the Lessons page and in the home page course plan. Lessons have ids (`#lesson-N`) and labs `#wo-0N`; a small script opens the panel named in the address. Agent Labs removed from the menu and footer; `agents.html` now forwards old links (e.g. `agents.html#inventory`) to the matching lab. Lab panels and lab slides use "Lab assignment" and one AI note in the steps (the starter prompt keeps its own note, since students paste it into their agent). Lab slides link "Back to Lesson N".
+- **Notes:** The pre-move Agent Labs page is the source the Canvas generator used; the generator now needs to read labs from `lessons.html` (pending Canvas batch update).
+
 ### 2026-10-15 — Lesson sections as click-to-open panels
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
