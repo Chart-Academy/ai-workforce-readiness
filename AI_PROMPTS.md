@@ -18,6 +18,22 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-14 — AI Instructions note between assessment steps
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > I need this [AI Instructions note] to be inserted in between commands so that students can't screenshot around it. For example, on slide 10 of Lesson 7, can this come right above the number 3 bullet, which makes it hard to screenshot. We have already blocked them from copying and pasting.
+- **Result:** Added the pink AI Instructions note inside every in-class assessment step list (32 lists: `lessons.html`, `agents.html`, all lesson and lab slide decks). It sits above step 3, or between the steps in 2-step lists; following steps keep their numbers via `value`. The note at the bottom of each assessment stays. Styles: `.ai-step` in `public/css/style.css` and `views/labs/slides/slides.css`.
+- **Notes:**
+
+### 2026-10-14 — Lessons 6 and 7 switched to Google tools
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Lesson 6 and 7 is highlighting Microsoft, but because we are using Google for their email address and storage box, we wanted the lessons to be on Google Sheets and Google Slides and Google Docs. Plus update those lessons to reflect the change including the title of the lesson on the lesson tab and home page under topics.
+- **Result:** Lesson 6 is now "Google Docs and Google Slides" (Suggesting mode instead of Track Changes, Drive sharing, new Google Slides step and slide). Lesson 7 is now "Google Sheets" (Sheets menu paths, new "open in Sheets" slide). Renamed slide decks to `lesson6-google-docs-slides.html` and `lesson7-google-sheets.html`. Updated home page topics, Lesson 0 / Getting Started (Google account: Gmail, Drive, Calendar; Gemini listed first), Lesson 8 and 9 references, and the WO-02 / WO-06 lab tools.
+- **Notes:** Practice files stay .docx/.xlsx; students upload them to Drive and use File → Save as Google Docs/Sheets.
+
 ### 2026-10-14 — Getting Started as pre-work lesson
 - **Tool / model:** Claude Code (Opus 5.5)
 - **Branch:** main

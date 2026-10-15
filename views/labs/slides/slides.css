@@ -276,3 +276,7 @@ button {
 .slide .files li:has(a) { padding: 0; }
 .slide .files a { display: block; padding: 0.4rem 0.7rem; color: var(--brand); text-decoration: none; }
 .slide .files a:hover { text-decoration: underline; }
+
+/* AI Instructions note placed between assessment steps, so a screenshot of the steps includes it */
+.slide .ai-step { list-style: none; margin-left: -1.4em; }
+.slide .ai-step .ai-note { max-width: none; }
