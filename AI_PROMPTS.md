@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — "Class slides" wording; Canvas matches the lesson sections
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > Could Canvas follow the same format as the online assignments with three sections: learning objectives, slides, and in-class assignment? Also change "Teacher's slides" to "Class slides".
+- **Result:** `lessons.html`: "Teacher's slides" → "Class slides" (all 10 panels and the page intro). The private grading script (`instructor-only/…/AllInOne.gs`, update 3) now writes Canvas descriptions as numbered sections: 1. Learning objectives, 2. Class slides (link + embedded deck), 3. In-class assignment; labs get 1. Class slides, 2. Lab assignment.
+- **Notes:** Teachers apply it in Canvas with "Canvas: update assignment descriptions".
+
 ### 2026-10-15 — Home page redesign: hero band and distinct sections
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
