@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Home page: audiences and job-search outcomes first
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > "Who this course is for" and the outcomes need to be higher on the page. Underscore that this builds knowledge for those looking for their first job, returning to work, or growing in their current career, and that it optimizes the job search and accelerates placement into good, viable employment. Make the three "who this is for" horizontal across the page with graphics.
+- **Result:** `index.html` order is now hero → Who this course is for → What you'll leave with → Course plan. Rewrote the hero intro, path cards, and outcomes around job search and placement. Paths are illustrated cards (inline SVG: briefcase, open door, rising steps) in a 3-column grid that stacks below 640px. Styles in `public/css/style.css` (`.paths`, `.path`, `.path-art`, `.section-lede`).
+- **Notes:**
+
 ### 2026-10-15 — Submission and review notes for students
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
