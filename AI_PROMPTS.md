@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Diverse learner avatars on the home page
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > On the home page under the Chart Academy logo, add various avatars showing diversity.
+- **Result:** `index.html`: a row of six inline-SVG learner avatars (different skin tones, ages, hair, a hijab, glasses) under the logo, with the caption "For every learner: starting out, coming back, or moving up." Styles: `.avatar-row`, `.avatar`, `.avatar-caption` in `public/css/style.css`.
+- **Notes:** The user also asked "can we connect" — waiting to hear whether that means linking the avatars or a "Connect with us" section.
+
 ### 2026-10-15 — Grading: certificate, LinkedIn badge, 80% proficiency; Learn → Build → Apply
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
