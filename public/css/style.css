@@ -1285,3 +1285,68 @@ ol.objectives li::marker { color: var(--accent); font-weight: 700; }
 @media (max-width: 600px) {
   .lesson > summary { grid-template-columns: 1fr auto auto; }
 }
+
+/* ---------- Grading page ---------- */
+.weight-bar {
+  display: flex;
+  max-width: 48rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.weight-bar span { padding: 0.5rem 0.55rem; min-width: 0; line-height: 1.25; overflow-wrap: anywhere; }
+.wb-part { background: var(--line); color: var(--ink); }
+.wb-lessons { background: var(--brand-soft); color: var(--ink); }
+.wb-labs { background: var(--brand); color: #ffffff; }
+.wb-final { background: var(--accent); color: #ffffff; }
+@media (max-width: 640px) { .weight-bar { font-size: 0.62rem; } .weight-bar span { padding: 0.5rem 0.3rem; } }
+
+.completion {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: center;
+  background: var(--brand-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+@media (max-width: 860px) { .completion { grid-template-columns: 1fr; } }
+.completion-text { display: grid; gap: 0.85rem; min-width: 0; }
+.earn-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; max-width: var(--measure); }
+.completion-art { position: relative; display: flex; justify-content: center; padding: 1.75rem 0 1.5rem; }
+.certificate { width: 100%; max-width: 340px; height: auto; filter: drop-shadow(0 6px 14px rgba(22, 33, 63, 0.18)); }
+.badge { position: absolute; right: 2%; bottom: -1.25rem; width: 116px; height: auto; filter: drop-shadow(0 4px 10px rgba(22, 33, 63, 0.25)); }
+
+.ct-paper { fill: #fffdf7; stroke: var(--brand); stroke-width: 2; }
+.ct-frame { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 6 3; }
+.ct-brand { fill: #d81f2e; font-family: var(--font-display); font-size: 13px; font-weight: 600; font-variant: small-caps; letter-spacing: 0.05em; }
+.ct-title { fill: #16213f; font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+.ct-course { fill: #3a56a5; font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+.ct-small { fill: #4f5b78; font-family: var(--font-body); font-size: 10px; }
+.ct-tiny { fill: #4f5b78; font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
+.ct-line { stroke: #4f5b78; stroke-width: 1; }
+.ct-ribbon { fill: #3a56a5; }
+.ct-seal { fill: #d81f2e; stroke: #ffffff; stroke-width: 2; }
+.ct-seal-star { fill: #ffffff; }
+
+.bd-ring { fill: #3a56a5; }
+.bd-inner { fill: #ffffff; stroke: #d81f2e; stroke-width: 3; }
+.bd-text { fill: #16213f; font-family: var(--font-display); font-size: 9.5px; font-weight: 700; letter-spacing: 0.03em; }
+.bd-arc-text { fill: #ffffff; font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; dominant-baseline: middle; }
+
+.jump-star { position: absolute; top: 0; right: 8%; width: 44px; height: 44px; fill: #f5b301; stroke: #d81f2e; stroke-width: 1.5; stroke-linejoin: round; }
+@keyframes star-jump {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  30%      { transform: translateY(-18px) rotate(-12deg) scale(1.08); }
+  50%      { transform: translateY(0) rotate(0deg) scale(0.96); }
+  60%      { transform: translateY(-6px) rotate(6deg) scale(1.02); }
+  75%      { transform: translateY(0) rotate(0deg) scale(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .jump-star { animation: star-jump 1.8s ease-in-out infinite; transform-origin: 50% 100%; }
+}

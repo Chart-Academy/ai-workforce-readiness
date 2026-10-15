@@ -18,6 +18,14 @@ A running record of prompts given to AI assistants while building this project. 
 
 ## Log
 
+### 2026-10-15 — Grading: certificate, LinkedIn badge, 80% proficiency; Learn → Build → Apply
+- **Tool / model:** Claude Code (Opus 5.5), run by Cedric
+- **Branch:** main
+- **Prompt:**
+  > On the grading tab, remove the link for the final assessment. Students earn a satisfactory completion certificate and a LinkedIn badge with 80% proficiency. Add logos and graphics (a certificate) and a jumping star near the completion section. Also identify our instructional framework as Learn, Build, Apply instead of Assess.
+- **Result:** `grading.html`: Final Assessment link removed from page text; "assignment" wording; weight color bar under the table; new "Certificate and LinkedIn badge" section (80% proficiency) with an SVG certificate (Chart Academy logo, seal, ribbon), an "AI Workforce Ready" badge, and an animated jumping star (still when prefers-reduced-motion). `getting-started.html` and Lesson 0 in `lessons.html`: framework is now Learn → Build → Apply. Styles under "Grading page" in `public/css/style.css`.
+- **Notes:** Completion threshold changed from 70% to 80%; Canvas/program materials and a badge-issuing method still need confirming.
+
 ### 2026-10-15 — Agent Labs moved into their lessons
 - **Tool / model:** Claude Code (Opus 5.5), run by Cedric
 - **Branch:** main
