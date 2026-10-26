@@ -278,6 +278,8 @@ button {
 .slide .files a:hover { text-decoration: underline; }
 .slide .files li.all { border-color: var(--brand); }
 .slide .files li.all a { font-weight: 700; }
+.slide .files li:has(.file-alt) { display: flex; }
+.slide .files .file-alt { border-left: 1px solid var(--line); color: var(--muted); font-size: 0.8em; }
 
 /* AI Instructions note placed between assessment steps, so a screenshot of the steps includes it */
 .slide .ai-step { list-style: none; margin-left: -1.4em; }

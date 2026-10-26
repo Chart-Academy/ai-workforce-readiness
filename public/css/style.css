@@ -1009,6 +1009,31 @@ tfoot td {
   font-weight: 700;
 }
 
+/* Practice file: main link makes a Google copy; the small link downloads the original file */
+.files li:has(.file-alt) {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.files li:has(.file-alt) > a:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.files .file-alt {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.copy-note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0.6rem 0 0;
+}
+
 .own-words {
   background: var(--brand-soft);
   border-radius: var(--radius);
