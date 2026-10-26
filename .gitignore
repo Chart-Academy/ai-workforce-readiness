@@ -7,3 +7,6 @@ public/data/**/*-files.zip
 
 # node
 node_modules/
+
+# Instructor master copies of practice files (SharePoint only)
+Master/
