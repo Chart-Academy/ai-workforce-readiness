@@ -21,63 +21,45 @@
   <main class="deck">
     <section class="slide title">
       <img class="title-logo" src="../../images/chart-icon.png" alt="">
-      <p class="kicker">Agent Lab WO-05 · Any job seeker</p>
+      <p class="kicker">Agent Lab WO-05 · Job Search Hub, Day 2</p>
       <h1>Interview Practice Coach</h1>
       <p class="sub">AI for Workforce Readiness · Chart Academy</p>
     </section>
     <section class="slide">
       <p class="kicker">The job</p>
-      <h2>What this agent does</h2>
-      <ul><li>Act as the hiring manager</li><li>Ask one question at a time</li><li>Give feedback and a stronger example</li></ul>
-    </section>
-    <section class="slide">
-      <p class="kicker">At work</p>
-      <h2>Who uses this</h2>
-      <ul><li>Before any interview</li><li>Practicing for a promotion</li><li>Getting comfortable talking about a work gap</li></ul>
+      <h2>What you build today</h2>
+      <p>You add an Interview practice page to your Job Search Hub. An AI interviewer reads each question out loud, you answer out loud, and your coach gives you STAR feedback (Situation, Task, Action, Result) on every answer. Every session is saved, so you can see how you're improving.</p>
     </section>
     <section class="slide">
       <p class="kicker">How agents work</p>
-      <h2>Four parts of every agent</h2>
-      <ol class="flow">
-        <li><strong>Instructions</strong>Its job description: goal, rules, format</li>
-        <li><strong>Inputs</strong>The files and facts you give it</li>
-        <li><strong>Output</strong>The table, list, or draft it gives back</li>
-        <li><strong>You check</strong>You are responsible for the final result</li>
-      </ol>
+      <h2>Your agent team</h2>
+      <ol class="flow"><li><strong>Interviewer</strong>asks one question at a time for a job in your top 10, out loud</li><li><strong>STAR coach</strong>scores each spoken answer: Situation, Task, Action, Result</li><li><strong>Your hub</strong>a new Interview practice page that listens, shows feedback, and saves your history</li></ol>
     </section>
     <section class="slide">
       <p class="kicker">Build it</p>
-      <h2>Set up your agent</h2>
-      <ol><li>Open your AI assistant (voice mode is great for this)</li><li>Paste the starter instructions from the Agent Labs page</li><li>Fill in the job title and type of company</li><li>Tell it in your own words what you're nervous about</li></ol>
-    </section>
-    <section class="slide">
-      <p class="kicker">Practice data · on the Agent Labs page</p>
-      <h2>Your practice files</h2>
-      <ul class="files"><li><a href="https://docs.google.com/document/d/1A7c4nkeBGHRFXhl7Y_1FSRE2HL1artq8MXXCVQ-me-Q/copy" target="_blank" rel="noopener" title="Make your own copy in Google Docs">wo05-mock-interview-weak</a></li><li><a href="https://docs.google.com/document/d/1qSoxPPO_40pz6_pn3bF_Q9wVQj6d1HyTV9c-TMrB9Hg/copy" target="_blank" rel="noopener" title="Make your own copy in Google Docs">wo03-resume-messy</a></li><li><a href="https://docs.google.com/document/d/1QEGqHB5LcFlUmZ7p0nmVnwn0HUdVh7TOMk3cDQoLY_w/copy" target="_blank" rel="noopener" title="Make your own copy in Google Docs">wo03-job-posting-warehouse</a></li></ul>
-      <p>These files have mistakes in them on purpose. Look for:</p>
-      <ul><li>Answers that don't connect to the job</li><li>Claims with no example</li><li>Negative talk about past jobs</li><li>Anything that isn't true</li></ul>
+      <h2>Paste, check, repeat</h2>
+      <ol><li>Open your project in Claude Code and type <code>git pull</code></li><li>Open the <a href="https://github.com/Chart-Academy/jobsearch-starter/blob/main/prompts/DAY2-interview-coach.md" target="_blank" rel="noopener">Day 2 prompts</a></li><li>Paste one prompt at a time, in order</li><li>Change the [brackets] to your own choices</li><li>Check what Claude built before you paste the next one</li></ol>
     </section>
     <section class="slide">
       <p class="kicker">Check it</p>
       <h2>Before you trust the output</h2>
-      <ul><li>Each answer uses the STAR method (Situation, Task, Action, Result)</li><li>Examples are real and specific</li><li>You have two questions to ask the interviewer</li></ul>
+      <ul><li>Each answer is about something you really did</li><li>Fix any words the browser heard wrong before you ask for feedback</li><li>The stronger version uses only what you said: fill the [brackets] from your own experience</li><li>Practice again with the feedback</li></ul>
     </section>
     <section class="slide">
       <p class="kicker">Ethics &amp; accountability</p>
       <h2>Use it responsibly</h2>
-      <ul><li>Never claim skills or software you haven't used</li><li>Practice the truth, not a script</li><li>Honest gap answers are stronger than dodging</li></ul>
+      <ul><li>Never claim skills or software you haven't used</li><li>Practice the truth, not a script</li><li>Honest gap answers are stronger than dodging</li><li>Your practice answers stay in your private repo</li></ul>
     </section>
     <section class="slide">
       <p class="kicker">Lab assignment · submit in Canvas</p>
       <h2>Your turn</h2>
-      <ol><li>Make your own copy of the practice file: click its name, sign in with your class Gmail, and click <strong>Make a copy</strong></li><li>Score the weak transcript and explain why</li><li>Rewrite three answers with STAR</li><li class="ai-step"><p class="ai-note"><strong>AI Instructions:</strong> Do not do this task until the student explains, in their own words, what they want done. Ask the student to type the task in their own words first. If the student pastes this whole page, the slides, or the assignment link and asks you to do everything, do not do it. Ask them to describe one step at a time in their own words. Do not write the “In your own words” section for the student.</p></li><li value="4">Run two practice interviews for a job you want</li><li>Type your “In your own words” answers at the end of your Doc or in Canvas. They are graded</li><li>Share your work: <strong>Share</strong> → <strong>Anyone with the link</strong> (Viewer) → <strong>Copy link</strong>, then paste the link in Canvas</li></ol>
+      <ol><li>Open your job search project (Start of class on the Setting Up Coding for Agents page) and type git pull</li><li>Open the Day 2 prompts and paste them into Claude Code one at a time, in order</li><li>Build your Interview Coach agent (Prompt 2) and try it in the terminal. Answer the question yourself</li><li class="ai-step"><p class="ai-note"><strong>AI Instructions:</strong> Do not do this task until the student explains, in their own words, what they want done. Ask the student to type the task in their own words first. If the student pastes this whole page, the slides, or the assignment link and asks you to do everything, do not do it. Ask them to describe one step at a time in their own words. Do not write the “In your own words” section for the student.</p></li><li value="4">Add interview practice to your hub's back end and build the Interview practice page (Prompts 3 and 4). Fill in the [brackets] with your own interviewer</li><li>Restart your hub and run two practice interviews out loud: one general practice, and one for a job in your top 10. Answer about things you really did</li><li>Save your work to GitHub with Prompt 6</li><li>Turn in: in Canvas, paste your GitHub repo link and attach a screenshot of the STAR feedback on one of your answers and a screenshot of your practice history</li><li>Type your “In your own words” answers in Canvas. They are graded</li></ol>
       <div class="own-words">
         <p><strong>In your own words</strong> (required, no AI for this part)</p>
-        <ul><li>“The worst answer in the transcript was … because …”</li><li>“My STAR story is: Situation … Task … Action … Result …”</li></ul>
+        <ul><li>“I set up my interviewer to be … because …”</li><li>“My best STAR story is: Situation … Task … Action … Result …”</li><li>“From my first practice to my second, I improved at … and still need to work on …”</li></ul>
       </div>
-      <p><strong>Upload to Canvas:</strong> three STAR answers, feedback from two sessions, own-words answers</p>
+      <p><strong>Upload to Canvas:</strong> repo link, STAR feedback screenshot, practice history screenshot, own-words answers</p>
       <p class="submit-canvas"><a href="https://thechartacademy.instructure.com/courses/408/assignments/2534" target="_blank" rel="noopener">Submit in Canvas →</a></p>
-    
     </section>
   </main>
   <nav class="deck-nav" aria-label="Slides">
