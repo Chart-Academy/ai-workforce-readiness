@@ -585,15 +585,139 @@ Then add the job to my tracker: Company, Role, Date applied, Status, Follow-up d
               <div>
               <p class="label">Your agent team</p>
               <ul><li><strong>Profile Builder:</strong> turns your résumé and your own notes into a skills profile</li><li><strong>Opening Finder:</strong> searches the web for real openings and adds the ones you found yourself</li><li><strong>Fit Checker:</strong> checks every opening against your must-haves and picks your top 10</li><li><strong>Your hub:</strong> a back end (hub.py) and a Jobs page you design, with your tracker and documents</li></ul>
-              <p>You build it by pasting the class prompts into Claude Code, one at a time. Words in [brackets] are yours to choose.</p>
             </div>
+              <div class="prompt-panels" id="wo-04-prompts">
+                <p class="label">Class prompts · Day 1</p>
+                <p>Open the panels in order. Change the words in the white boxes to your own choices, click <strong>Copy</strong>, and paste into Claude Code. Wait until Claude finishes and you've checked the result before you open the next panel.</p>
+                <details class="prompt-panel" id="wo-04-p1" data-kind="terminal">
+                  <summary><span class="panel-num">1</span><span class="panel-title"><span class="panel-tag">Terminal</span>Start of class (type these in the terminal)</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~/Documents/&lt;your-repo-name&gt;
+git pull
+source .venv/bin/activate        # Windows: .venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+claude</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p2" data-kind="prompt">
+                  <summary><span class="panel-num">2</span><span class="panel-title"><span class="panel-tag">Prompt</span>Get oriented</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Read CLAUDE.md, NOTES.md, and prompts/DAY1-job-search-hub.md. In five sentences or fewer, explain in plain language what we're building today and what each part does. Don't build anything yet.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p3" data-kind="prompt">
+                  <summary><span class="panel-num">3</span><span class="panel-title"><span class="panel-tag">Prompt</span>Your résumé</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p>Have your résumé open in Google Docs. You'll paste it into the chat after this prompt.</p><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">I'm going to paste my résumé next. Save it as data/resume.txt, replacing the sample. Before you save it, remove my phone number, email address, and home address, and tell me exactly what you removed. Don't change anything else.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p4" data-kind="prompt">
+                  <summary><span class="panel-num">4</span><span class="panel-title"><span class="panel-tag">Prompt</span>About me, in my own words</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Help me fill in data/about_me.md. Go through it one section at a time: ask me the question, wait for my answer, and write down what I said using my own words. Don't make up answers or add anything I didn't say. Replace each SAMPLE line as we go. When we're done, read the whole file back to me.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p5" data-kind="prompt">
+                  <summary><span class="panel-num">5</span><span class="panel-title"><span class="panel-tag">Prompt</span>Build the Profile Builder agent</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build agents/build_profile.py, my Profile Builder agent.
+
+What it does: reads data/resume.txt and data/about_me.md and saves my skills profile to data/profile.json.
+How to build it:
+- Use the helpers in agents/common.py, and put the shared RULES text in its instructions.
+- Use structured outputs (schema=) so the answer is always JSON with these fields: summary (two sentences), target_roles (list), location, skills (list of {skill, proof}, where proof says where it shows up in my résumé or notes), hidden_skills (skills I have but didn't list, like ones from caregiving, volunteering, or side jobs), certifications, must_haves (exactly as I wrote them), nice_to_haves, start_date, search_terms (3 to 5 job titles or keywords), and notes_still_sample (true if about_me.md still has SAMPLE lines).
+- Add today's date as "updated" before saving.
+- Print a short, friendly summary: what I'm looking for, my must-haves, my skills, and the hidden skills. If notes_still_sample is true, tell me to finish about_me.md.
+- End by printing the next step and the tokens used.
+When it's built, run it once and show me the result.</pre><p><strong>Check it:</strong> is everything in your profile true? If not, fix your résumé or about_me.md and paste: <code>Run python agents/build_profile.py again.</code></p></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p6" data-kind="prompt">
+                  <summary><span class="panel-num">6</span><span class="panel-title"><span class="panel-tag">Prompt</span>Build the Opening Finder agent</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build agents/find_openings.py, my Opening Finder agent.
+
+What it does: finds real, current job openings that fit my profile, adds the listings I pasted into data/listings_pasted.txt, and saves them all to data/openings.json.
+How to build it:
+- Use the helpers in agents/common.py and the shared RULES.
+- Step 1, search: use Claude's web search tool ({"type": "web_search_20260209", "name": "web_search", "max_uses": 5}) with effort "low". Search for my target_roles and search_terms near my location. Prefer employer career pages, government job boards (USAJOBS, DC Government Careers), and well-known job boards. For each opening: title, employer, location, pay, schedule, the link exactly as it appeared in the results, when it was posted, two or three lines about the job, and any sign of fast hiring. Only report openings actually seen in the search results, and never make up a link. Aim for 10 to 15. Never log in to a site and never apply.
+- Step 2, organize: a second request with structured outputs turns the search results plus my pasted listings into one clean list. Each opening has: title, employer, location, pay, schedule, link, posted, source ("web search" or "you pasted"), about, requirements (list), fast_hire_signs (list), and warning_signs (list). Merge exact duplicates. Give each opening an id number starting at 1.
+- Skip data/listings_pasted.txt if it still has the sample note at the top. If I run it with --no-search, use only my pasted listings.
+- Print a numbered list of what it found, remind me to open each link myself, then print the next step and the tokens used.
+When it's built, run it once and show me the result.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p7" data-kind="your-turn">
+                  <summary><span class="panel-num">7</span><span class="panel-title"><span class="panel-tag">Your turn</span>Search on your own</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p>Search Indeed and DC Government Careers yourself for two or three jobs you'd really apply to. Paste each listing (title, employer, pay, description, link) into <code>data/listings_pasted.txt</code>, with a line of three dashes (<code>---</code>) between listings. Delete the sample note at the top. Then paste:</p><p class="cmd-label">Type in the terminal</p><pre class="cmd">Run python agents/find_openings.py again so it includes the listings I found myself.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p8" data-kind="prompt">
+                  <summary><span class="panel-num">8</span><span class="panel-title"><span class="panel-tag">Prompt</span>Build the Fit Checker agent</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build agents/rank_openings.py, my Fit Checker agent.
+
+What it does: checks every opening in data/openings.json against my profile, labels and scores it, and saves my top 10 to data/top10.json.
+How to build it:
+- Use the helpers in agents/common.py and the shared RULES. Use structured outputs.
+- For every opening: check each of my must-haves as "met", "not met", or "unknown" (unknown is not the same as met), with a short reason. Label it "good fit", "maybe", "not a fit", "scam", "closed", or "duplicate". Scam signs: fees or equipment to buy, pay far above normal for the work, asking for bank details or an SSN before an interview, interviews only by text or chat app, a vague employer, or a personal email address. Mark quick_hire only if the listing mentions open interviews, same-week interviews or offers, on-the-spot hiring, or an immediate start. Give a fit_score from 1 to 10 and a chance of "strong", "fair", or "stretch", based only on how my real skills match the requirements. Add why (one or two sentences), matching_skills, and gaps.
+- Combine each opening with its ranking, and add student_check: {"checked": false, "agree": true, "note": ""} so I can record my own check later.
+- Sort good fits first, then maybes, each by fit score. top10 = the ids of the first 10 good fits and maybes.
+- Save {"updated": today, "top10": [...], "jobs": [...]} to data/top10.json.
+- Print my top 10 with scores, labels, and QUICK HIRE; then the ones left out and why. Say that scores are estimates and that I should check every one myself. End with the next step and the tokens used.
+When it's built, run it once and show me the result.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p9" data-kind="prompt">
+                  <summary><span class="panel-num">9</span><span class="panel-title"><span class="panel-tag">Prompt</span>Build the back end (hub.py)</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build hub.py, the back end of my Job Search Hub. Follow the Job Search Hub section of CLAUDE.md.
+
+- Python standard library only (http.server with ThreadingHTTPServer). Listen on 127.0.0.1 port 8000. Serve the files in site/. Print "Open http://localhost:8000 in Chrome" when it starts, and stop cleanly with Ctrl+C.
+- GET /api/hub returns JSON: profile (data/profile.json or null), top10, jobs, updated (from data/top10.json, or empty lists), tracker (rows from data/tracker.csv), documents (data/resume.txt plus every .md and .txt file in data/resumes/ and data/cover_letters/, each as {folder, name, title}), and interviews (every JSON file in data/interviews/, or an empty list).
+- GET /api/document?folder=...&amp;name=... returns {text} for one of those documents. Refuse any name with a slash or one that starts with a dot.
+- POST /api/check {id, checked, agree, note} saves my own check of one job into its student_check in data/top10.json.
+- POST /api/tracker/add {id} adds that job from my top 10 to the tracker (Company, Role, Link, QUICK HIRE, Status "Interested") unless it's already there, and returns the tracker.
+- POST /api/tracker {rows} saves the whole tracker and returns it.
+- Tracker columns, in this order: Company, Role, Link, QUICK HIRE, Date applied, Status, Follow-up date, Interview date, Offer date, Notes. Save it as data/tracker.csv so I can import it into Google Sheets.
+- Only accept POST requests whose Host is localhost or 127.0.0.1 and whose Content-Type is application/json. Send errors back as {"error": "..."} in plain language.
+Don't start the server yourself. When you're done, tell me how to start it in a second terminal window.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p10" data-kind="prompt">
+                  <summary><span class="panel-num">10</span><span class="panel-title"><span class="panel-tag">Prompt</span>Build the front end (Jobs page)</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p>Choose your own look first: a name for your hub, a main color, an emoji avatar, and the feeling you want the page to have.</p><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build the front end of my Job Search Hub in site/: index.html, style.css, and hub.js. Plain HTML, CSS, and JavaScript only. Follow the Job Search Hub section of CLAUDE.md.
+
+My choices:
+- Name of my hub: <input class="choice" type="text" value="My Job Search Hub" size="19" title="My Job Search Hub" aria-label="Your choice: My Job Search Hub">
+- Main color: <input class="choice" type="text" value="#3a56a5" size="9" title="or name any color you like" aria-label="Your choice: or name any color you like">
+- Avatar in the header: <input class="choice" type="text" value="🧭" size="8" title="or any emoji you like" aria-label="Your choice: or any emoji you like">
+- How the page should feel: <input class="choice" type="text" value="calm and encouraging" size="22" title="calm and encouraging" aria-label="Your choice: calm and encouraging">
+
+The page shows, top to bottom:
+1. A header with my avatar, the hub name, a line saying which jobs I'm searching for, and links to "Jobs" and "Interview practice" (interview.html, which we'll build on day 2).
+2. Progress boxes: openings found, top jobs I've checked (like 3/10), jobs in my tracker, applications sent (tracker rows with a status other than Interested), practice interviews, and my average STAR score (or a dash if none yet).
+3. "What I'm looking for": my profile summary, target roles, location, must-haves, and nice-to-haves.
+4. "My top 10 openings": a card for each job with its rank, title, employer, location, pay, fit score out of 10, chips for the label, the chance, the source, and a highlighted QUICK HIRE chip when it applies, the reason, each must-have marked ✓ met, ✗ not met, or ? unknown, the gaps, an "Open listing" button (new tab, only for http or https links), and "Add to tracker". At the bottom of each card, a check box "I opened it and checked it against my must-haves", an agree/disagree menu, a note box (placeholder: "What did the agent get right or wrong? (your own words)"), and a "Save my check" button. Checked cards turn light green. Above the cards, one line: the scores are estimates, so check every job yourself.
+5. A fold-out list of the openings that didn't make my top 10, with their label and reason. Show scam labels in red.
+6. "My application tracker": an editable table (Status is a drop-down: Interested, Applied, Interview, Offer, Not selected, Withdrew; the four date columns use date pickers), with buttons to save it, add a job I found myself, remove a row, and "Download for Google Sheets" (a CSV file).
+7. "My documents": a list of my résumés and cover letters; clicking one shows it next to the list.
+Keep the colors as CSS variables at the top of style.css. Make it easy to read on a laptop and a phone, and escape every value before putting it on the page.
+When it's done, tell me how to start the hub and open it.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p11" data-kind="terminal">
+                  <summary><span class="panel-num">11</span><span class="panel-title"><span class="panel-tag">Terminal</span>Start your hub</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p>Open a <strong>second</strong> terminal window, go to your repo folder, activate <code>.venv</code> (see Start of class), then run:</p><p class="cmd-label">Type in the terminal</p><pre class="cmd">python hub.py</pre><p>Open <strong>http://localhost:8000</strong> in Chrome. Leave this window open while you use your hub. Press <strong>Ctrl+C</strong> in it to stop the hub.</p></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p12" data-kind="your-turn">
+                  <summary><span class="panel-num">12</span><span class="panel-title"><span class="panel-tag">Your turn</span>Check every ranking</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p>For each job in your top 10: click <strong>Open listing</strong>, read the real posting, and compare it with your must-haves. Tick the check box, choose agree or disagree, and write in the note box, in your own words, what the agent got right or wrong. Click <strong>Save my check</strong>. Add the jobs you'd really apply to with <strong>Add to tracker</strong>.</p></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p13" data-kind="optional">
+                  <summary><span class="panel-num">13</span><span class="panel-title"><span class="panel-tag">Optional</span>Make it yours</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Change my hub's look: <input class="choice wide" type="text" value="" placeholder="describe what you want, for example &quot;make the header a sunset gradient&quot;, &quot;use a rounded friendly font&quot;, &quot;add a short encouraging quote under my name&quot;, or &quot;make QUICK HIRE jobs glow&quot;" size="60" aria-label="describe what you want, for example &quot;make the header a sunset gradient&quot;, &quot;use a rounded friendly font&quot;, &quot;add a short encouraging quote under my name&quot;, or &quot;make QUICK HIRE jobs glow&quot;">. Keep everything else working.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p14" data-kind="optional">
+                  <summary><span class="panel-num">14</span><span class="panel-title"><span class="panel-tag">Optional</span>A cover letter for a job you like</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build agents/write_cover_letter.py. Run it as python agents/write_cover_letter.py 3, where 3 is the job's id. It reads my résumé and that job from data/top10.json and drafts a cover letter of under 250 words using only my real experience, with [brackets] where I should add something only I know. Save it to data/cover_letters/ as a .md file named after the employer and job, starting with "DRAFT: edit before you send." Then run it for job <input class="choice wide" type="text" value="" placeholder="id number" size="10" aria-label="id number">.</pre><p>Open the draft in your hub (My documents) and edit it so it's true and sounds like you.</p></div>
+                </details>
+                <details class="prompt-panel" id="wo-04-p15" data-kind="prompt">
+                  <summary><span class="panel-num">15</span><span class="panel-title"><span class="panel-tag">Prompt</span>Save your work (every time, before you close your laptop)</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Update NOTES.md with what we did today and what's next. Then commit all my work with a short, clear message and push it to GitHub. Tell me when it's saved.</pre></div>
+                </details>
+                <div class="prompt-help"><p><strong>If something breaks</strong>, paste this:</p><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">That didn't work. Here is what I saw: <input class="choice wide" type="text" value="" placeholder="paste the error or describe what happened" size="41" aria-label="paste the error or describe what happened">. Explain what went wrong in plain language, then fix it.</pre></div>
+                <p class="note">The same prompts are in your repo's <code>prompts/</code> folder and on <a href="https://github.com/Chart-Academy/jobsearch-starter/blob/main/prompts/DAY1-job-search-hub.md" target="_blank" rel="noopener">GitHub</a>.</p>
+              </div>
               <div class="materials">
               <p class="label">Class materials</p>
-              <ul class="files"><li><a href="labs/slides/wo04-skills-to-openings.html">Class slides</a></li><li><a href="https://github.com/Chart-Academy/jobsearch-starter/blob/main/prompts/DAY1-job-search-hub.md" target="_blank" rel="noopener">Day 1 prompts</a></li><li><a href="claude-code-setup.html">Setting Up Coding for Agents</a></li><li><a href="https://github.com/Chart-Academy/jobsearch-starter/tree/solution" target="_blank" rel="noopener">Finished example (if you get stuck)</a></li></ul>
+              <ul class="files"><li><a href="labs/slides/wo04-skills-to-openings.html">Class slides</a></li><li><a href="#wo-04-prompts">Day 1 prompt panels</a></li><li><a href="claude-code-setup.html">Setting Up Coding for Agents</a></li><li><a href="https://github.com/Chart-Academy/jobsearch-starter/tree/solution" target="_blank" rel="noopener">Finished example (if you get stuck)</a></li></ul>
             </div>
               <div class="assess">
               <p class="label">Lab assignment · submit in Canvas</p>
-              <ol><li>Open your job search project: follow <strong>Start of class</strong> on the <a href="claude-code-setup.html">Setting Up Coding for Agents</a> page, and type <code>git pull</code> to get today's lab files.</li><li>Open the <a href="https://github.com/Chart-Academy/jobsearch-starter/blob/main/prompts/DAY1-job-search-hub.md" target="_blank" rel="noopener">Day 1 prompts</a> and paste them into Claude Code one at a time, in order. Start with your résumé and <code>data/about_me.md</code>: answer every question in your own words.</li><li>Build and run your Profile Builder and Opening Finder agents (Prompts 4 and 5). Check that everything in your profile is true.</li><li>Search Indeed and DC Government Careers yourself for two or three jobs you'd really apply to. Paste them into <code>data/listings_pasted.txt</code> and run the Opening Finder again.</li><li>Build your Fit Checker, your hub's back end, and its Jobs page (Prompts 6, 7, and 8). Fill in the [brackets] with your own choices.</li><li>Start your hub and check every job in your top 10: open the listing, compare it with your must-haves, save your check with a note in your own words, and add the jobs you'd apply to to your tracker.</li><li>Save your work to GitHub with Prompt 11.</li><li>Answer the “In your own words” questions below in the Canvas text box. Write them yourself, without AI. They are part of your grade.</li><li>Turn in: in Canvas, paste your GitHub repo link and attach a screenshot of your top 10 with your checks saved and a screenshot of your tracker.</li></ol>
+              <ol><li>Open your job search project: follow <strong>Start of class</strong> on the <a href="claude-code-setup.html">Setting Up Coding for Agents</a> page, and type <code>git pull</code> to get today's lab files.</li><li>Open the <a href="#wo-04-prompts">Day 1 prompt panels</a> below, one at a time and in order. Fill in the boxes with your own choices, click <strong>Copy</strong>, and paste into Claude Code. Start with your résumé and <code>data/about_me.md</code>: answer every question in your own words.</li><li>Build and run your Profile Builder and Opening Finder agents (Prompts 4 and 5). Check that everything in your profile is true.</li><li>Search Indeed and DC Government Careers yourself for two or three jobs you'd really apply to. Paste them into <code>data/listings_pasted.txt</code> and run the Opening Finder again.</li><li>Build your Fit Checker, your hub's back end, and its Jobs page (Prompts 6, 7, and 8). Fill in the [brackets] with your own choices.</li><li>Start your hub and check every job in your top 10: open the listing, compare it with your must-haves, save your check with a note in your own words, and add the jobs you'd apply to to your tracker.</li><li>Save your work to GitHub with Prompt 11.</li><li>Answer the “In your own words” questions below in the Canvas text box. Write them yourself, without AI. They are part of your grade.</li><li>Turn in: in Canvas, paste your GitHub repo link and attach a screenshot of your top 10 with your checks saved and a screenshot of your tracker.</li></ol>
               <div class="own-words">
                 <p class="label">In your own words · required, write this part yourself, no AI</p>
                 <ul><li>“The must-have that ruled out the most jobs was … because …”</li><li>“The agent ranked ___ too high/low. When I opened the listing, I saw …”</li><li>“A skill from my own past that my profile showed me I have is …”</li></ul>
@@ -611,15 +735,85 @@ Then add the job to my tracker: Company, Role, Date applied, Status, Follow-up d
               <div>
               <p class="label">Your agent team</p>
               <ul><li><strong>Interviewer:</strong> asks one question at a time for a job in your top 10, out loud</li><li><strong>STAR coach:</strong> scores each spoken answer: Situation, Task, Action, Result</li><li><strong>Your hub:</strong> a new Interview practice page that listens, shows feedback, and saves your history</li></ul>
-              <p>You build it by pasting the class prompts into Claude Code, one at a time. Words in [brackets] are yours to choose.</p>
             </div>
+              <div class="prompt-panels" id="wo-05-prompts">
+                <p class="label">Class prompts · Day 2</p>
+                <p>Open the panels in order. Change the words in the white boxes to your own choices, click <strong>Copy</strong>, and paste into Claude Code. Wait until Claude finishes and you've checked the result before you open the next panel.</p>
+                <details class="prompt-panel" id="wo-05-p1" data-kind="terminal">
+                  <summary><span class="panel-num">1</span><span class="panel-title"><span class="panel-tag">Terminal</span>Start of class (type these in the terminal)</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~/Documents/&lt;your-repo-name&gt;
+git pull
+source .venv/bin/activate        # Windows: .venv\Scripts\Activate.ps1
+claude</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p2" data-kind="prompt">
+                  <summary><span class="panel-num">2</span><span class="panel-title"><span class="panel-tag">Prompt</span>Pick up where you left off</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Read CLAUDE.md, NOTES.md, and prompts/DAY2-interview-coach.md. In five sentences or fewer, tell me what we built on day 1 and what we'll add today. Don't build anything yet.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p3" data-kind="prompt">
+                  <summary><span class="panel-num">3</span><span class="panel-title"><span class="panel-tag">Prompt</span>Build the Interview Coach agent</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build agents/interview_coach.py, my Interview Coach agent.
+
+It has two functions that the hub will use. Both use the helpers in agents/common.py, the shared RULES, and effort "low".
+- next_question(job, asked): acts as a friendly hiring manager for that job (or a general entry-level job if job is None). It asks one question in one or two short sentences that sound natural read out loud, mixes common questions ("Tell me about yourself") with behavioral ones ("Tell me about a time you...") and questions about the job's real requirements, and never repeats a question in asked. It returns the question as plain text.
+- star_feedback(job, question, answer): acts as an interview coach and scores one spoken answer with STAR. The answer was spoken and turned into text, so ignore filler words and small transcription mistakes. Use structured outputs with these fields: situation, task, action, result (each {present: true/false, comment}), score (1 to 5: 1 = no STAR parts, 5 = all four, clear and specific), strength, improve, and stronger_version. The stronger version reorganizes only what I actually said into STAR order and puts [brackets] where I need to add something from my own experience. It must never add experience I didn't mention. Add today's date as "date".
+Also let me try it in the terminal: python agents/interview_coach.py asks one general question, lets me type an answer, and prints the STAR feedback.
+When it's built, tell me how to try it. Don't answer the question for me.</pre><p><strong>Try it:</strong> run <code>python agents/interview_coach.py</code> in the terminal and answer the question yourself.</p></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p4" data-kind="prompt">
+                  <summary><span class="panel-num">4</span><span class="panel-title"><span class="panel-tag">Prompt</span>Add interview practice to the back end</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Add interview practice to hub.py. Keep everything that's already there working.
+- POST /api/interview/question {job, asked} returns {question} from next_question.
+- POST /api/interview/feedback {job, question, answer} returns {feedback} from star_feedback. If the answer is shorter than 15 characters, send back a friendly error asking me to answer again.
+- POST /api/interview/save {job_title, answers} saves {date, job, answers} as a new JSON file in data/interviews/ named with today's date and a number, like 2026-11-18-01.json.
+- Import interview_coach only inside these requests, so the Jobs page still works even if something is wrong with the coach.
+Don't start the server yourself. Tell me when it's ready.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p5" data-kind="prompt">
+                  <summary><span class="panel-num">5</span><span class="panel-title"><span class="panel-tag">Prompt</span>Build the Interview practice page</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p>Choose your interviewer first: a name, an avatar, how fast they talk, and how the page should feel.</p><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Build site/interview.html and site/interview.js, my Interview practice page. Use the same header, colors, and style.css as my Jobs page, with "Interview practice" highlighted in the menu.
+
+My choices:
+- Interviewer's name: <input class="choice" type="text" value="Ms. Johnson" size="13" title="Ms. Johnson" aria-label="Your choice: Ms. Johnson">
+- Interviewer's avatar: <input class="choice" type="text" value="🧑‍💼" size="8" title="or any emoji you like" aria-label="Your choice: or any emoji you like">
+- How fast they talk: <input class="choice" type="text" value="normal" size="8" title="normal" aria-label="Your choice: normal"> (slower, normal, or faster)
+- How the page should feel: <input class="choice" type="text" value="like a real, friendly interview" size="33" title="like a real, friendly interview" aria-label="Your choice: like a real, friendly interview">
+
+The page has:
+1. Setup: a menu to pick a job from my top 10 (or "General practice"), how many questions (3, 5, or 6), a "Read questions out loud" check box, and a Start button. A note says to use Chrome or Edge to answer out loud, and that I can always type instead.
+2. The interview: "Question 2 of 5", the interviewer's avatar and name with the employer, the question in large text, and a "Say it again" button. The browser reads each question out loud with speechSynthesis.
+3. My answer: a microphone button. When I click it, the browser listens (SpeechRecognition, or webkitSpeechRecognition in Chrome) and types what I say into a big text box as I talk; the button turns red and says Stop. I can fix any words in the box before I ask for feedback. If the browser can't listen, or I block the microphone, show a plain message and let me type.
+4. A "Get STAR feedback" button. While it waits, show "Your coach is reading your answer…". Then show my score out of 5, four boxes for Situation, Task, Action, and Result (green ✓ if present, red ✗ if missing, each with its comment), "What you did well", "Try next time", and a fold-out "A stronger version, using only what you said".
+5. "Next question" until I reach my number of questions, and "Finish and save", which saves the session with /api/interview/save.
+6. "My practice history": a table of my saved sessions with the date, job, number of answers, and average STAR score.
+Escape every value before putting it on the page. When it's done, tell me how to try it.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p6" data-kind="terminal">
+                  <summary><span class="panel-num">6</span><span class="panel-title"><span class="panel-tag">Terminal</span>Restart your hub</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p>In your second terminal window, press <strong>Ctrl+C</strong> to stop the hub, then start it again so it picks up the new code:</p><p class="cmd-label">Type in the terminal</p><pre class="cmd">python hub.py</pre><p>Open <strong>http://localhost:8000/interview.html</strong> in Chrome and allow the microphone when Chrome asks.</p></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p7" data-kind="your-turn">
+                  <summary><span class="panel-num">7</span><span class="panel-title"><span class="panel-tag">Your turn</span>Practice</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><ol><li>Run one <strong>General practice</strong> interview with 3 questions. Answer out loud, in your own words, about things you really did.</li><li>Run a second interview for a job in your top 10. Use the feedback from the first one.</li><li>Read your history. What improved?</li></ol></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p8" data-kind="optional">
+                  <summary><span class="panel-num">8</span><span class="panel-title"><span class="panel-tag">Optional</span>Make it yours</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Change my Interview practice page: <input class="choice wide" type="text" value="" placeholder="describe what you want, for example &quot;show a short tip before each question&quot;, &quot;add a timer that shows how long I talked&quot;, &quot;make the interviewer&#x27;s avatar bounce while the question is read&quot;, or &quot;add a calm background color&quot;" size="60" aria-label="describe what you want, for example &quot;show a short tip before each question&quot;, &quot;add a timer that shows how long I talked&quot;, &quot;make the interviewer&#x27;s avatar bounce while the question is read&quot;, or &quot;add a calm background color&quot;">. Keep everything else working.</pre></div>
+                </details>
+                <details class="prompt-panel" id="wo-05-p9" data-kind="prompt">
+                  <summary><span class="panel-num">9</span><span class="panel-title"><span class="panel-tag">Prompt</span>Save your work (every time, before you close your laptop)</span><span class="panel-done" aria-hidden="true"></span></summary>
+                  <div class="panel-body"><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">Update NOTES.md with what we did today and what's next. Then commit all my work with a short, clear message and push it to GitHub. Tell me when it's saved.</pre></div>
+                </details>
+                <div class="prompt-help"><p><strong>If something breaks</strong>, paste this:</p><p class="cmd-label">Paste into Claude Code</p><pre class="cmd">That didn't work. Here is what I saw: <input class="choice wide" type="text" value="" placeholder="paste the error or describe what happened" size="41" aria-label="paste the error or describe what happened">. Explain what went wrong in plain language, then fix it.</pre></div>
+                <p class="note">The same prompts are in your repo's <code>prompts/</code> folder and on <a href="https://github.com/Chart-Academy/jobsearch-starter/blob/main/prompts/DAY2-interview-coach.md" target="_blank" rel="noopener">GitHub</a>.</p>
+              </div>
               <div class="materials">
               <p class="label">Class materials</p>
-              <ul class="files"><li><a href="labs/slides/wo05-interview-coach.html">Class slides</a></li><li><a href="https://github.com/Chart-Academy/jobsearch-starter/blob/main/prompts/DAY2-interview-coach.md" target="_blank" rel="noopener">Day 2 prompts</a></li><li><a href="claude-code-setup.html">Setting Up Coding for Agents</a></li><li><a href="https://github.com/Chart-Academy/jobsearch-starter/tree/solution" target="_blank" rel="noopener">Finished example (if you get stuck)</a></li></ul>
+              <ul class="files"><li><a href="labs/slides/wo05-interview-coach.html">Class slides</a></li><li><a href="#wo-05-prompts">Day 2 prompt panels</a></li><li><a href="claude-code-setup.html">Setting Up Coding for Agents</a></li><li><a href="https://github.com/Chart-Academy/jobsearch-starter/tree/solution" target="_blank" rel="noopener">Finished example (if you get stuck)</a></li></ul>
             </div>
               <div class="assess">
               <p class="label">Lab assignment · submit in Canvas</p>
-              <ol><li>Open your job search project (<strong>Start of class</strong> on the <a href="claude-code-setup.html">Setting Up Coding for Agents</a> page) and type <code>git pull</code>.</li><li>Open the <a href="https://github.com/Chart-Academy/jobsearch-starter/blob/main/prompts/DAY2-interview-coach.md" target="_blank" rel="noopener">Day 2 prompts</a> and paste them into Claude Code one at a time, in order.</li><li>Build your Interview Coach agent (Prompt 2) and try it in the terminal. Answer the question yourself.</li><li>Add interview practice to your hub's back end and build the Interview practice page (Prompts 3 and 4). Fill in the [brackets] with your own interviewer.</li><li>Restart your hub and run two practice interviews out loud: one general practice, and one for a job in your top 10. Answer about things you really did.</li><li>Save your work to GitHub with Prompt 6.</li><li>Answer the “In your own words” questions below in the Canvas text box. Write them yourself, without AI. They are part of your grade.</li><li>Turn in: in Canvas, paste your GitHub repo link and attach a screenshot of the STAR feedback on one of your answers and a screenshot of your practice history.</li></ol>
+              <ol><li>Open your job search project (<strong>Start of class</strong> on the <a href="claude-code-setup.html">Setting Up Coding for Agents</a> page) and type <code>git pull</code>.</li><li>Open the <a href="#wo-05-prompts">Day 2 prompt panels</a> below, one at a time and in order. Fill in the boxes with your own choices, click <strong>Copy</strong>, and paste into Claude Code.</li><li>Build your Interview Coach agent (Prompt 2) and try it in the terminal. Answer the question yourself.</li><li>Add interview practice to your hub's back end and build the Interview practice page (Prompts 3 and 4). Fill in the [brackets] with your own interviewer.</li><li>Restart your hub and run two practice interviews out loud: one general practice, and one for a job in your top 10. Answer about things you really did.</li><li>Save your work to GitHub with Prompt 6.</li><li>Answer the “In your own words” questions below in the Canvas text box. Write them yourself, without AI. They are part of your grade.</li><li>Turn in: in Canvas, paste your GitHub repo link and attach a screenshot of the STAR feedback on one of your answers and a screenshot of your practice history.</li></ol>
               <div class="own-words">
                 <p class="label">In your own words · required, write this part yourself, no AI</p>
                 <ul><li>“I set up my interviewer to be … because …”</li><li>“My best STAR story is: Situation … Task … Action … Result …”</li><li>“From my first practice to my second, I improved at … and still need to work on …”</li></ul>
@@ -731,6 +925,52 @@ Format it so I can add each item to my calendar.
       if (!el) return;
       for (var n = el; n; n = n.parentElement) { if (n.tagName === 'DETAILS') n.open = true; }
       el.scrollIntoView();
+    })();
+
+    // Job Search Hub prompt panels: Copy buttons (with the student's choices filled in) and a "copied" check.
+    (function promptPanels() {
+      var KEY = 'jsh-copied';
+      var copied = {};
+      try { copied = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { copied = {}; }
+      function mark(panel) {
+        if (!panel) return;
+        panel.classList.add('done');
+        copied[panel.id] = true;
+        try { localStorage.setItem(KEY, JSON.stringify(copied)); } catch (e) {}
+      }
+      document.querySelectorAll('.prompt-panel').forEach(function (p) { if (copied[p.id]) p.classList.add('done'); });
+      function textOf(pre) {
+        var out = '';
+        pre.childNodes.forEach(function (n) {
+          if (n.nodeType === 3) out += n.nodeValue;
+          else if (n.tagName === 'INPUT') out += n.value;
+        });
+        return out;
+      }
+      document.querySelectorAll('.prompt-panels pre.cmd').forEach(function (pre) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.setAttribute('aria-label', 'Copy this to paste');
+        btn.addEventListener('click', function () {
+          var text = textOf(pre);
+          function done() {
+            btn.textContent = 'Copied ✓';
+            mark(pre.closest('.prompt-panel'));
+            setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+          }
+          function fallback() {
+            var ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); done(); } catch (e) {}
+            document.body.removeChild(ta);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+          else fallback();
+        });
+        pre.appendChild(btn);
+      });
     })();
   </script>
 </body>

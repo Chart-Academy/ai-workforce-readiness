@@ -1522,3 +1522,49 @@ ol.objectives li::marker { color: var(--accent); font-weight: 700; }
 .lesson-part.rubric .part-title { font-size: var(--step-0, 1rem); }
 .lesson-part.rubric td { vertical-align: top; }
 .lesson-part.rubric .pts { color: var(--muted); white-space: nowrap; }
+
+/* ---------- Job Search Hub prompt panels (WO-04, WO-05) ---------- */
+.prompt-panels { display: grid; gap: 0.5rem; }
+.prompt-panel { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); scroll-margin-top: 90px; }
+.prompt-panel > summary {
+  display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.9rem; cursor: pointer; list-style: none;
+  font-weight: 700;
+}
+.prompt-panel > summary::-webkit-details-marker { display: none; }
+.prompt-panel > summary:hover { background: var(--brand-soft); }
+.prompt-panel[open] > summary { border-bottom: 1px solid var(--line); }
+.panel-num {
+  flex: 0 0 auto; width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--brand); color: var(--surface); font-family: var(--font-display); font-size: 0.95rem;
+}
+.prompt-panel.done .panel-num { background: #2e7d4f; }
+.panel-title { flex: 1; }
+.panel-tag {
+  display: inline-block; margin-right: 0.5rem; padding: 0 0.45rem; border: 1px solid var(--line); border-radius: 4px;
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); vertical-align: middle;
+}
+.prompt-panel[data-kind="prompt"] .panel-tag { color: var(--brand); border-color: var(--brand); }
+.panel-done::after { content: ""; }
+.prompt-panel.done .panel-done::after { content: "✓ copied"; color: #2e7d4f; font-size: 0.85rem; }
+.panel-body { display: grid; gap: 0.6rem; padding: 0.9rem 1rem 1rem; }
+.panel-body ol { margin: 0; padding-left: 1.3rem; }
+.prompt-panels .cmd-label { margin: 0.25rem 0 -0.35rem; font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.prompt-panels .cmd {
+  position: relative; margin: 0; background: #16213f; color: #e7ebf6; border-radius: var(--radius);
+  padding: 0.85rem 5.5rem 0.85rem 1rem; font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.6;
+  white-space: pre-wrap; word-break: break-word; overflow-x: auto; -webkit-user-select: text; user-select: text;
+}
+:root[data-theme="dark"] .prompt-panels .cmd { background: #0a0f1f; border: 1px solid var(--line); }
+.prompt-panels .cmd .choice {
+  font: inherit; color: #16213f; background: #fff7d6; border: 2px solid #f2c94c; border-radius: 4px;
+  padding: 0 0.3rem; margin: 0.1rem 0; max-width: 100%;
+}
+.prompt-panels .copy-btn {
+  position: absolute; top: 0.5rem; right: 0.5rem; font: 700 0.85rem var(--font-body); cursor: pointer;
+  background: #e7ebf6; color: #16213f; border: 0; border-radius: 4px; padding: 0.35rem 0.7rem;
+}
+.prompt-panels .copy-btn:hover { background: #ffffff; }
+.prompt-panels code { -webkit-user-select: text; user-select: text; }
+.prompt-help { border: 1px dashed var(--line); border-radius: 8px; padding: 0.75rem 1rem; display: grid; gap: 0.5rem; }
+.choice-word { background: #fff7d6; padding: 0 0.2rem; border-radius: 3px; }
