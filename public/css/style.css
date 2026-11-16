@@ -176,17 +176,18 @@ p {
 
 .navbar {
   display: flex;
-  gap: 0.25rem;
+  flex-wrap: wrap;            /* wrap instead of hiding tabs off the edge */
+  justify-content: flex-end;
+  gap: 0.15rem;
   list-style: none;
   margin: 0 0 0 auto;
   padding: 0;
-  overflow-x: auto;
   min-width: 0;
 }
 
 .navbar a {
   display: block;
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.5rem;
   border-radius: var(--radius);
   color: var(--muted);
   text-decoration: none;
@@ -227,6 +228,7 @@ p {
     margin-left: 0;
     order: 3;
     width: 100%;
+    justify-content: flex-start;
   }
 
   .theme-toggle {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Claude Code Setup · AI for Workforce Readiness</title>
+  <title>Setting Up Coding for Agents · AI for Workforce Readiness</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lexend:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -115,7 +115,7 @@
       <ul class="navbar">
         <li><a href="index.html">Home</a></li>
         <li><a href="getting-started.html">Getting Started</a></li>
-        <li><a href="claude-code-setup.html" aria-current="page">Claude Code Setup</a></li>
+        <li><a href="claude-code-setup.html" aria-current="page">Setting Up Coding for Agents</a></li>
         <li><a href="lessons.html">Lessons</a></li>
         <li><a href="final-assessment.html">Final Assessment</a></li>
         <li><a href="grading.html">Grading</a></li>
@@ -129,7 +129,7 @@
     <header class="page-head gs-head">
       <div class="gs-head-text">
         <p class="eyebrow">Security+ · October 19, 2026 cohort</p>
-        <h1>Claude Code Setup</h1>
+        <h1>Setting Up Coding for Agents</h1>
         <p class="lede">Set up once, in about 15 minutes, to build job search agents with Claude Code. You'll connect Claude Code to your class API key, install Python, and save your work to GitHub, so you can pick up where you left off on any computer.</p>
       </div>
       <svg class="setup-art" viewBox="0 0 340 220" role="img" aria-label="A laptop running Claude Code, connected by a key and a GitHub branch">
@@ -249,8 +249,15 @@ gh repo clone <span class="repo-name">jobsearch-yourname</span></pre>
         <li>Go into your project folder:
           <pre class="cmd">cd <span class="repo-name">jobsearch-yourname</span></pre>
         </li>
+        <li><strong>First time only:</strong> share your repo with your instructors so they can see your work. Run this inside your project folder:
+          <pre class="cmd">gh api -X PUT "repos/{owner}/{repo}/collaborators/abchart" --silent
+gh api -X PUT "repos/{owner}/{repo}/collaborators/waynel11" --silent</pre>
+          Leave <code>{owner}</code> and <code>{repo}</code> exactly as they are. The GitHub tool fills them in for you.
+        </li>
       </ol>
       <p class="check"><strong>Check:</strong> run <code>ls</code> (Mac) or <code>dir</code> (Windows). You should see <code>CLAUDE.md</code>, <code>NOTES.md</code>, and an <code>agents</code> folder. Your repo is also on GitHub at <code>github.com/your-username/<span class="repo-name">jobsearch-yourname</span></code>.</p>
+      <p class="check"><strong>Check sharing:</strong> this should list <code>abchart</code> and <code>waynel11</code>. They'll disappear from the list after your instructors accept.</p>
+      <pre class="cmd">gh api "repos/{owner}/{repo}/invitations" --jq ".[].invitee.login"</pre>
     </section>
 
     <!-- Step 5 -->
@@ -361,6 +368,7 @@ gh repo clone <span class="repo-name">jobsearch-yourname</span></pre>
             <tr><td>"Credit balance is too low" or a spending limit error</td><td>You've used your class budget. Tell your instructor.</td></tr>
             <tr><td>"running scripts is disabled" (Windows)</td><td>See the fix in step 5.</td></tr>
             <tr><td><code>git push</code> is rejected</td><td>Your repo has newer work from another computer. <strong>Ask Claude:</strong> "Pull the latest changes from GitHub, fix any conflicts, then push."</td></tr>
+            <tr><td>The sharing command says "Not Found" or "none of the git remotes"</td><td>You're not in your project folder. Run the <code>cd</code> command from step 4, then try again.</td></tr>
             <tr><td><code>(.venv)</code> is missing from your terminal line</td><td>Run the activate part of the "Start" command in <a href="#every-class">Every class</a>.</td></tr>
           </tbody>
         </table>
@@ -386,7 +394,7 @@ gh repo clone <span class="repo-name">jobsearch-yourname</span></pre>
       <nav class="footer-map" aria-label="Site map">
         <div>
           <p class="footer-head">Course</p>
-          <ul><li><a href="index.html">Home</a></li><li><a href="getting-started.html">Getting Started</a></li><li><a href="claude-code-setup.html" aria-current="page">Claude Code Setup</a></li><li><a href="grading.html">Grading</a></li></ul>
+          <ul><li><a href="index.html">Home</a></li><li><a href="getting-started.html">Getting Started</a></li><li><a href="claude-code-setup.html" aria-current="page">Setting Up Coding for Agents</a></li><li><a href="grading.html">Grading</a></li></ul>
         </div>
         <div>
           <p class="footer-head">Learn</p>
