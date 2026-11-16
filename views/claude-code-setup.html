@@ -151,9 +151,9 @@
     <section>
       <h2 class="section-title">What you need</h2>
       <ul class="gs-cards four">
-        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg><h3>A class computer</h3><p>Claude Code, Git, and Python are already installed. Using your own? See <a href="#own-computer">Your own computer</a>.</p></li>
+        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg><h3>Any computer</h3><p>Class computers already have Claude Code, Git, and Python 3. Using your own? See <a href="#own-computer">Your own computer</a>.</p></li>
         <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><h3>Your class Gmail</h3><p>The Google address you gave your instructor. Use it for GitHub too.</p></li>
-        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg><h3>Your class API key</h3><p>Your instructor sends it to you privately. It comes with about <strong>$20</strong> of Claude usage for the course.</p></li>
+        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg><h3>Your class API key</h3><p>Your instructor sends it to you privately. It comes with about <strong>$20</strong> of Claude usage for the course. Keep that message so you can copy the key on any computer.</p></li>
         <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><h3>A GitHub account</h3><p>Free. Make one at <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> with your class Gmail if you don't have one.</p></li>
       </ul>
     </section>
@@ -163,11 +163,12 @@
       <ol class="jump">
         <li><a href="#step-terminal">1. Open a terminal</a></li>
         <li><a href="#step-github">2. Sign in to GitHub</a></li>
-        <li><a href="#step-key">3. Your API key</a></li>
-        <li><a href="#step-repo">4. Your class repo</a></li>
+        <li><a href="#step-repo">3. Your class repo</a></li>
+        <li><a href="#step-key">4. Connect your API key</a></li>
         <li><a href="#step-env">5. Python packages</a></li>
         <li><a href="#step-claude">6. Start Claude Code</a></li>
         <li><a href="#every-class">Every class</a></li>
+        <li><a href="#end-of-class">End of class</a></li>
         <li><a href="#new-computer">Another computer</a></li>
         <li><a href="#own-computer">Your own computer</a></li>
         <li><a href="#help">If something goes wrong</a></li>
@@ -210,36 +211,14 @@ git config --global user.email "you@gmail.com"</pre>
     </section>
 
     <!-- Step 3 -->
-    <section class="step" id="step-key">
-      <div class="step-head"><span class="step-num">3</span><h2>Save your API key on your computer</h2></div>
-      <p class="lede">Your API key lets Claude Code and your agents use your class budget. Save it once, and every new terminal window will have it.</p>
-      <div class="warn">
-        <p><strong>Keep your key private.</strong> Never paste it into a chat with Claude, a document, a screenshot, an email, or any file in your project. If someone gets it, they can spend your budget. If you think it leaked, tell your instructor right away and they'll replace it.</p>
-      </div>
-      <ol class="steps" style="margin-top:1rem">
-        <li>Find the key your instructor sent you. It starts with <code>sk-ant-</code>. Copy all of it.</li>
-        <li>Run this command. When it asks, paste your key and press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>.
-          <span class="only-mac"> Nothing shows while you paste. That's normal.</span>
-          <pre class="cmd only-mac">read -s "K?Paste your API key, then press Return: " && echo "export ANTHROPIC_API_KEY=$K" >> ~/.zshrc && unset K && echo && echo "Saved."</pre>
-          <pre class="cmd only-win">$k = Read-Host "Paste your API key, then press Enter"; [Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", $k.Trim(), "User"); Remove-Variable k; "Saved."</pre>
-        </li>
-        <li><strong>Close the terminal and open a new one.</strong> Then check that the key is there. This shows only the first few characters:
-          <pre class="cmd only-mac">echo ${ANTHROPIC_API_KEY:0:10}</pre>
-          <pre class="cmd only-win">$env:ANTHROPIC_API_KEY.Substring(0,10)</pre>
-        </li>
-      </ol>
-      <p class="check"><strong>Check:</strong> you should see <code>sk-ant-api</code>. If you see nothing, run the save command above again, then open a new terminal.</p>
-    </section>
-
-    <!-- Step 4 -->
     <section class="step" id="step-repo">
-      <div class="step-head"><span class="step-num">4</span><h2>Get your class repo</h2></div>
-      <p class="lede">A repo (repository) is your project folder on GitHub. You'll make your own private copy of the class starter repo, <a href="https://github.com/Chart-Academy/jobsearch-starter" target="_blank" rel="noopener">Chart-Academy/jobsearch-starter</a>, and download it to this computer.</p>
+      <div class="step-head"><span class="step-num">3</span><h2>Get your class repo</h2></div>
+      <p class="lede">A repo (repository) is your project folder on GitHub. You'll make your own private copy of the class starter repo, <a href="https://github.com/Chart-Academy/jobsearch-starter" target="_blank" rel="noopener">Chart-Academy/jobsearch-starter</a>, and download it to this computer. <strong>GitHub is where your work is saved.</strong> The copy on this computer is just your workspace for today.</p>
       <ol class="steps">
         <li>Type your first and last name. The commands below fill in your repo's name for you.
           <p class="name-field"><label for="student-name">Your name</label> <input id="student-name" type="text" autocomplete="off" placeholder="Jordan Rivera"></p>
         </li>
-        <li><strong>First time only:</strong> make your private copy and download it into your Documents folder:
+        <li><strong>First time only:</strong> make your private copy and download it:
           <pre class="cmd">cd ~/Documents
 gh repo create <span class="repo-name">jobsearch-yourname</span> --private --template Chart-Academy/jobsearch-starter --clone</pre>
           <span class="check">Already did this on another computer? Download your copy instead:</span>
@@ -260,12 +239,32 @@ gh api -X PUT "repos/{owner}/{repo}/collaborators/waynel11" --silent</pre>
       <pre class="cmd">gh api "repos/{owner}/{repo}/invitations" --jq ".[].invitee.login"</pre>
     </section>
 
+    <!-- Step 4 -->
+    <section class="step" id="step-key">
+      <div class="step-head"><span class="step-num">4</span><h2>Connect your API key</h2></div>
+      <p class="lede">Your API key connects Claude Code and your agents to your $20 class budget. You put it in a file called <code>.env</code> in your project folder. That file stays on this computer and is never saved to GitHub.</p>
+      <div class="warn">
+        <p><strong>Keep your key private.</strong> Only put it in the <code>.env</code> file. Never paste it into a chat with Claude, a document, a screenshot, or an email. If you think someone else has it, tell your instructor and they'll replace it.</p>
+      </div>
+      <ol class="steps" style="margin-top:1rem">
+        <li>Open your <code>.env</code> file. In your project folder, run:
+          <pre class="cmd only-mac">[ -f .env ] || cp .env.example .env; open -e .env</pre>
+          <pre class="cmd only-win">if (!(Test-Path .env)) { Copy-Item .env.example .env }; notepad .env</pre>
+          It opens in <span class="only-mac">TextEdit</span><span class="only-win">Notepad</span>.</li>
+        <li>Find the line <code>ANTHROPIC_API_KEY=</code>. Click right after the <code>=</code> and paste your key, with no spaces or quotes. It starts with <code>sk-ant-</code>.</li>
+        <li>Save with <strong class="only-mac">Command + S</strong><strong class="only-win">Ctrl + S</strong>, then close the window.</li>
+      </ol>
+      <p class="check"><strong>Check:</strong> this shows the first few characters of your key. You should see <code>sk-ant-api</code>.</p>
+      <pre class="cmd only-mac">python3 .claude/read_key.py | cut -c1-10</pre>
+      <pre class="cmd only-win">(python .claude/read_key.py).Substring(0,10)</pre>
+    </section>
+
     <!-- Step 5 -->
     <section class="step" id="step-env">
       <div class="step-head"><span class="step-num">5</span><h2>Install your Python packages</h2></div>
       <p class="lede">This creates a private Python space for your project, called <code>.venv</code>, and installs the tools your agents need. It stays on this computer and isn't saved to GitHub.</p>
       <ol class="steps">
-        <li>Make sure you're in your repo folder from step 4. Then run:
+        <li>Make sure you're in your project folder from step 3. Then run:
           <pre class="cmd only-mac">python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt</pre>
           <pre class="cmd only-win">python -m venv .venv; .venv\Scripts\Activate.ps1; pip install -r requirements.txt</pre>
         </li>
@@ -280,14 +279,13 @@ gh api -X PUT "repos/{owner}/{repo}/collaborators/waynel11" --silent</pre>
     <section class="step" id="step-claude">
       <div class="step-head"><span class="step-num">6</span><h2>Start Claude Code</h2></div>
       <ol class="steps">
-        <li>In your repo folder, run:
+        <li>In your project folder, run:
           <pre class="cmd">claude</pre>
-        </li>
-        <li>Claude Code asks: <em>"Detected a custom API key in your environment. Do you want to use this API key?"</em> Choose <strong>Yes</strong>.</li>
-        <li>If it asks you to sign in or choose an account type instead, don't sign in with your personal Claude account. Type <code>/logout</code>, press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>, and close the terminal. Then open a new terminal, go back to your repo folder, and run <code>claude</code> again.</li>
-        <li>Type <code>/status</code> and press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>. It should say you're using an <strong>API key</strong>. That means Claude Code is billing your class budget, not a personal account.</li>
+          Always start Claude Code from your project folder. That's where it finds your key.</li>
+        <li>If you see <em>"Do you trust the files in this folder?"</em>, choose <strong>Yes, proceed</strong>. This lets Claude Code read your key from <code>.env</code>.</li>
+        <li>Type <code>/status</code> and press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>. It should show that Claude Code is using your <strong>API key</strong>. That means it's billing your class budget, even if you're also signed in to a Claude account.</li>
         <li>Try it. Type:
-          <p class="ask"><strong>Ask Claude:</strong> "Read CLAUDE.md and NOTES.md and tell me what this project is. Then check that Python 3.12 is installed and the .venv is working."</p>
+          <p class="ask"><strong>Ask Claude:</strong> "Read CLAUDE.md and NOTES.md and tell me what this project is. Then run the sample job match agent."</p>
         </li>
       </ol>
       <p class="callout" style="margin-top:1.25rem">That's it. Your computer is set up. 🎉</p>
@@ -319,15 +317,29 @@ gh api -X PUT "repos/{owner}/{repo}/collaborators/waynel11" --silent</pre>
       <p class="callout" style="margin-top:1.25rem"><strong>Why NOTES.md matters:</strong> Claude doesn't remember your conversations from one computer to another. Your repo does. Claude reads <code>CLAUDE.md</code> and <code>NOTES.md</code> at the start of every session, so keep them up to date and you can pick up on any computer.</p>
     </section>
 
+    <!-- End of class -->
+    <section class="step" id="end-of-class">
+      <h2 class="section-title">End of class on a shared computer</h2>
+      <div class="prose">
+        <p>After you save your work to GitHub, leave nothing behind. Type <code>/exit</code> to close Claude Code, then run this. It checks that everything is saved on GitHub, then deletes this computer's copy (including your <code>.env</code> key file) and signs you out of GitHub. If anything isn't saved yet, it deletes nothing and tells you.</p>
+      </div>
+      <pre class="cmd only-mac">cd ~/Documents && R=<span class="repo-name">jobsearch-yourname</span> && if [ -n "$(git -C $R status --porcelain)" ] || [ -n "$(git -C $R log --branches --not --remotes --oneline)" ]; then echo "NOT SAVED YET. Ask Claude to commit and push, then run this again."; else rm -rf $R && gh auth logout --hostname github.com && echo "All clear. Your work is on GitHub and this computer is signed out."; fi</pre>
+      <pre class="cmd only-win">cd ~\Documents; $R = "<span class="repo-name">jobsearch-yourname</span>"; if ((git -C $R status --porcelain) -or (git -C $R log --branches --not --remotes --oneline)) { "NOT SAVED YET. Ask Claude to commit and push, then run this again." } else { Remove-Item -Recurse -Force $R; gh auth logout --hostname github.com; "All clear. Your work is on GitHub and this computer is signed out." }</pre>
+    </section>
+
     <!-- New computer -->
     <section class="step" id="new-computer">
-      <h2 class="section-title">Using a different class computer</h2>
+      <h2 class="section-title">Using a different computer</h2>
       <div class="prose">
-        <p>On a class computer you haven't used before, do steps 1–6 again. Skip making a GitHub account, and in step 4 use the "Already did this on another computer?" command. Your work comes down from GitHub.</p>
-        <p>Class computers are shared. Before you leave, sign out of GitHub and remove your key so the next person can't use your work or your budget:</p>
+        <p>At home, school, or the library, it's the same steps. Your work comes from GitHub, and your key comes from the message your instructor sent you:</p>
+        <ol>
+          <li>Sign in to GitHub (step 2).</li>
+          <li>Download your repo with the "Already did this on another computer?" command (step 3).</li>
+          <li>Paste your key into <code>.env</code> and save (step 4).</li>
+          <li>Install packages (step 5) and start Claude Code (step 6).</li>
+        </ol>
+        <p>On your own computer you only do this once. On a shared computer, run the <a href="#end-of-class">end-of-class</a> command before you leave.</p>
       </div>
-      <pre class="cmd only-mac">gh auth logout; sed -i '' '/ANTHROPIC_API_KEY/d' ~/.zshrc && echo "Signed out and key removed."</pre>
-      <pre class="cmd only-win">gh auth logout; [Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", $null, "User"); "Signed out and key removed."</pre>
     </section>
 
     <!-- Own computer -->
@@ -335,13 +347,13 @@ gh api -X PUT "repos/{owner}/{repo}/collaborators/waynel11" --silent</pre>
       <h2 class="section-title">Using your own computer</h2>
       <p class="lede section-lede" style="margin-bottom:1rem">Class computers come ready. On your own computer, install these first, then do steps 1–6.</p>
       <details class="lesson">
-        <summary><span class="lesson-num">Install</span><span class="lesson-title">Git, the GitHub tool, Python 3.12, and Claude Code</span><span class="lesson-toggle" aria-hidden="true">+</span></summary>
+        <summary><span class="lesson-num">Install</span><span class="lesson-title">Git, the GitHub tool, Python 3, and Claude Code</span><span class="lesson-toggle" aria-hidden="true">+</span></summary>
         <div class="lesson-body">
           <ol class="steps">
             <li class="only-mac"><span class="os-tag">Mac</span>Git: run this. If a window asks to install "command line developer tools," click <strong>Install</strong>.
               <pre class="cmd">xcode-select --install</pre></li>
             <li class="only-mac"><span class="os-tag">Mac</span>GitHub tool: go to <a href="https://cli.github.com/" target="_blank" rel="noopener">cli.github.com</a>, click <strong>Download for Mac</strong>, and open the installer.</li>
-            <li class="only-mac"><span class="os-tag">Mac</span>Python: go to <a href="https://www.python.org/downloads/macos/" target="_blank" rel="noopener">python.org/downloads/macos</a>, download the latest <strong>Python 3.12</strong> installer, and open it. When it finishes, double-click <strong>Install Certificates.command</strong> in the Finder window that opens.</li>
+            <li class="only-mac"><span class="os-tag">Mac</span>Python: go to <a href="https://www.python.org/downloads/macos/" target="_blank" rel="noopener">python.org/downloads/macos</a>, download the latest <strong>Python 3</strong> installer (3.10 or newer), and open it. When it finishes, double-click <strong>Install Certificates.command</strong> in the Finder window that opens.</li>
             <li class="only-win"><span class="os-tag">Windows</span>Git, the GitHub tool, and Python, all at once. Click <strong>Yes</strong> or <strong>Agree</strong> if Windows asks:
               <pre class="cmd">winget install --id Git.Git -e; winget install --id GitHub.cli -e; winget install --id Python.Python.3.12 -e</pre></li>
             <li>Claude Code: follow <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">install Claude Code</a>.</li>
@@ -363,12 +375,12 @@ gh api -X PUT "repos/{owner}/{repo}/collaborators/waynel11" --silent</pre>
           <tbody>
             <tr><td>"command not found" or "is not recognized"</td><td>Close the terminal and open a new one. If it still happens, the install didn't finish. Run that step again.</td></tr>
             <tr><td><code>python</code> is not recognized (Windows)</td><td>Run the Python installer again, click <strong>Modify</strong>, and turn on <strong>Add Python to environment variables</strong>. Or use the <code>winget</code> command in <a href="#own-computer">Your own computer</a>.</td></tr>
-            <tr><td>Claude Code asks you to log in, or <code>/status</code> doesn't say "API key"</td><td>Your key isn't saved. Do the check in step 3. If it's empty, save the key again. Then type <code>/logout</code> in Claude Code and restart it.</td></tr>
-            <tr><td>"Invalid API key"</td><td>The key was pasted wrong, or it was replaced. Save it again in step 3, copying the whole key with no spaces.</td></tr>
+            <tr><td>"apiKeyHelper script is failing", or Claude Code asks you to log in</td><td>Claude Code can't find your key. Make sure you started <code>claude</code> from your project folder, and that you saved your key in <code>.env</code> (step 4). Then run the check in step 4.</td></tr>
+            <tr><td>"Invalid API key"</td><td>The key was pasted wrong. Open <code>.env</code> again (step 4), paste the whole key right after the <code>=</code> with no spaces, and save.</td></tr>
             <tr><td>"Credit balance is too low" or a spending limit error</td><td>You've used your class budget. Tell your instructor.</td></tr>
             <tr><td>"running scripts is disabled" (Windows)</td><td>See the fix in step 5.</td></tr>
             <tr><td><code>git push</code> is rejected</td><td>Your repo has newer work from another computer. <strong>Ask Claude:</strong> "Pull the latest changes from GitHub, fix any conflicts, then push."</td></tr>
-            <tr><td>The sharing command says "Not Found" or "none of the git remotes"</td><td>You're not in your project folder. Run the <code>cd</code> command from step 4, then try again.</td></tr>
+            <tr><td>The sharing command says "Not Found" or "none of the git remotes"</td><td>You're not in your project folder. Run the <code>cd</code> command from step 3, then try again.</td></tr>
             <tr><td><code>(.venv)</code> is missing from your terminal line</td><td>Run the activate part of the "Start" command in <a href="#every-class">Every class</a>.</td></tr>
           </tbody>
         </table>
@@ -378,7 +390,7 @@ gh api -X PUT "repos/{owner}/{repo}/collaborators/waynel11" --silent</pre>
     <section class="gs-box rules">
       <h2 class="section-title">Ground rules for Claude Code</h2>
       <ul class="rule-list">
-        <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Keep your API key out of chats, files, screenshots, and GitHub. It's saved on your computer, and that's the only place it belongs.</span></li>
+        <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Your API key goes only in your project's <code>.env</code> file. Keep it out of chats, documents, screenshots, and GitHub.</span></li>
         <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Your budget is about $20 for the whole course. Check <code>/cost</code>, and start a fresh session with <code>/clear</code> when you switch tasks so you don't use extra.</span></li>
         <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Read what Claude wants to do before you approve it. You're responsible for anything it builds or changes.</span></li>
         <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Your agents can search and organize job listings, but you apply yourself. Never let an agent log in to a job site or apply for you.</span></li>
