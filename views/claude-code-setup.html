@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Claude Code Setup · AI for Workforce Readiness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lexend:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="icon" type="image/png" href="images/chart-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}
+  /* Mac / Windows choice: saved choice first, otherwise guess from the browser. */
+  var os="";try{os=localStorage.getItem("setup-os")||"";}catch(e){}
+  if(!os){os=/Win/i.test(navigator.userAgent)?"win":"mac";}
+  document.documentElement.setAttribute("data-os",os);})();</script>
+  <style>
+    /* ---------- Page-only styles for the Claude Code setup page ---------- */
+    .jump { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .jump a {
+      display: inline-block; padding: 0.35rem 0.8rem; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--surface); text-decoration: none; font-weight: 700; font-size: 0.95rem;
+    }
+    .jump a:hover { border-color: var(--brand); }
+
+    .os-switch {
+      position: sticky; top: 72px; z-index: 5;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+      padding: 0.75rem 1rem; margin-top: 2rem; box-shadow: 0 4px 14px rgba(22, 33, 63, 0.08);
+    }
+    .os-switch p { font-weight: 700; }
+    .os-switch button {
+      font: inherit; font-weight: 700; cursor: pointer; padding: 0.4rem 1rem; border-radius: var(--radius);
+      border: 2px solid var(--brand); background: transparent; color: var(--brand);
+    }
+    .os-switch button[aria-pressed="true"] { background: var(--brand); color: var(--surface); }
+    .os-switch .os-note { color: var(--muted); font-weight: 400; font-size: 0.95rem; }
+
+    /* Show only the chosen computer's steps. With no JavaScript, both stay visible. */
+    [data-os="mac"] .only-win, [data-os="win"] .only-mac { display: none !important; }
+    .os-tag {
+      display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+      padding: 0 0.4rem; margin-right: 0.35rem; vertical-align: middle;
+    }
+    html[data-os] .os-tag { display: none; }
+
+    .step { scroll-margin-top: 150px; }
+    .step-head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
+    .step-num {
+      flex: 0 0 auto; width: 2.6rem; height: 2.6rem; border-radius: 50%;
+      display: grid; place-items: center; background: var(--brand); color: var(--surface);
+      font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+    }
+    .step .lede { margin-bottom: 1rem; }
+    .steps { margin: 0; padding-left: 1.4rem; display: grid; gap: 0.9rem; max-width: 48rem; }
+    .steps > li::marker { font-weight: 700; color: var(--brand); }
+    .steps ul { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.3rem; }
+
+    /* Commands: copyable (the site turns off text selection elsewhere) */
+    .cmd {
+      position: relative; margin: 0.5rem 0 0; max-width: 48rem;
+      background: #16213f; color: #e7ebf6; border-radius: var(--radius);
+      padding: 0.85rem 5.5rem 0.85rem 1rem; overflow-x: auto;
+      font-family: var(--font-mono); font-size: 0.92rem; line-height: 1.55;
+      white-space: pre-wrap; word-break: break-word;
+      -webkit-user-select: text; user-select: text;
+    }
+    :root[data-theme="dark"] .cmd { background: #0a0f1f; border: 1px solid var(--line); }
+    .copy-btn {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      font: 700 0.8rem var(--font-body); cursor: pointer;
+      background: #e7ebf6; color: #16213f; border: 0; border-radius: 4px; padding: 0.3rem 0.6rem;
+    }
+    .copy-btn:hover { background: #ffffff; }
+    code {
+      font-family: var(--font-mono); font-size: 0.9em; background: var(--brand-soft);
+      padding: 0.05rem 0.35rem; border-radius: 4px; -webkit-user-select: text; user-select: text;
+    }
+    .ask {
+      max-width: 48rem; margin-top: 0.5rem; background: var(--brand-soft); border-left: 4px solid var(--brand);
+      border-radius: var(--radius); padding: 0.75rem 1rem;
+    }
+    .ask strong { color: var(--brand); }
+    .warn {
+      max-width: 48rem; border-left: 4px solid var(--accent); background: var(--surface);
+      border-radius: var(--radius); padding: 0.85rem 1rem; border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .check { color: var(--muted); margin-top: 1rem; }
+    .os-switch + .step { margin-top: 3rem; }
+    .check strong { color: var(--ink); }
+    .name-field { margin-top: 0.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+    .name-field label { font-weight: 700; }
+    .name-field input { font: inherit; padding: 0.45rem 0.7rem; border: 2px solid var(--brand); border-radius: var(--radius); background: var(--surface); color: var(--ink); min-width: 16rem; -webkit-user-select: text; user-select: text; }
+    .fix-table td:first-child { font-weight: 700; width: 38%; }
+    .setup-art { width: 100%; max-width: 340px; height: auto; justify-self: end; }
+    .setup-art .sa-screen { fill: #16213f; }
+    .setup-art .sa-frame { fill: var(--surface); stroke: var(--brand); stroke-width: 4; }
+    .setup-art .sa-base { fill: var(--brand); }
+    .setup-art .sa-text { fill: #e7ebf6; font: 500 13px var(--font-mono); }
+    .setup-art .sa-prompt { fill: #ff8a94; font: 500 13px var(--font-mono); }
+    .setup-art .sa-key { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; }
+    .setup-art .sa-cloud { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 3; }
+    .setup-art .sa-branch { fill: none; stroke: var(--brand); stroke-width: 3; stroke-linecap: round; }
+    .setup-art .sa-dot { fill: var(--brand); }
+    @media (max-width: 760px) { .setup-art { justify-self: start; max-width: 260px; } }
+  </style>
+</head>
+<body id="top">
+  <nav class="site-nav" aria-label="Main">
+    <div class="wrap">
+      <a class="brand-mark" href="index.html"><img src="images/chart-icon.png" alt="" width="40" height="40"><span>Chart Academy</span></a>
+      <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="getting-started.html">Getting Started</a></li>
+        <li><a href="claude-code-setup.html" aria-current="page">Claude Code Setup</a></li>
+        <li><a href="lessons.html">Lessons</a></li>
+        <li><a href="final-assessment.html">Final Assessment</a></li>
+        <li><a href="grading.html">Grading</a></li>
+      </ul>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
+    </div>
+  </nav>
+  <div class="road" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <header class="page-head gs-head">
+      <div class="gs-head-text">
+        <p class="eyebrow">Security+ · October 19, 2026 cohort</p>
+        <h1>Claude Code Setup</h1>
+        <p class="lede">Set up once, in about 15 minutes, to build job search agents with Claude Code. You'll connect Claude Code to your class API key, install Python, and save your work to GitHub, so you can pick up where you left off on any computer.</p>
+      </div>
+      <svg class="setup-art" viewBox="0 0 340 220" role="img" aria-label="A laptop running Claude Code, connected by a key and a GitHub branch">
+        <rect class="sa-frame" x="20" y="30" width="220" height="140" rx="10"/>
+        <rect class="sa-screen" x="32" y="42" width="196" height="116" rx="4"/>
+        <text class="sa-prompt" x="44" y="70">&gt;</text><text class="sa-text" x="58" y="70">claude</text>
+        <text class="sa-text" x="44" y="94">Find jobs near me</text>
+        <text class="sa-text" x="44" y="114">that match my</text>
+        <text class="sa-text" x="44" y="134">résumé ▌</text>
+        <path class="sa-base" d="M4 172h252l-14 16H18z"/>
+        <circle class="sa-key" cx="280" cy="52" r="14"/>
+        <path class="sa-key" d="M294 52h32M316 52v12M326 52v8"/>
+        <rect class="sa-cloud" x="252" y="112" width="80" height="80" rx="12"/>
+        <path class="sa-branch" d="M276 132v40M276 150c0-10 14-10 24-18"/>
+        <circle class="sa-dot" cx="276" cy="132" r="5"/><circle class="sa-dot" cx="276" cy="172" r="5"/><circle class="sa-dot" cx="304" cy="130" r="5"/>
+      </svg>
+    </header>
+
+    <section>
+      <h2 class="section-title">What you need</h2>
+      <ul class="gs-cards four">
+        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg><h3>A class computer</h3><p>Claude Code, Git, and Python are already installed. Using your own? See <a href="#own-computer">Your own computer</a>.</p></li>
+        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><h3>Your class Gmail</h3><p>The Google address you gave your instructor. Use it for GitHub too.</p></li>
+        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg><h3>Your class API key</h3><p>Your instructor sends it to you privately. It comes with about <strong>$20</strong> of Claude usage for the course.</p></li>
+        <li class="gs-card"><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><h3>A GitHub account</h3><p>Free. Make one at <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> with your class Gmail if you don't have one.</p></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">The steps</h2>
+      <ol class="jump">
+        <li><a href="#step-terminal">1. Open a terminal</a></li>
+        <li><a href="#step-github">2. Sign in to GitHub</a></li>
+        <li><a href="#step-key">3. Your API key</a></li>
+        <li><a href="#step-repo">4. Your class repo</a></li>
+        <li><a href="#step-env">5. Python packages</a></li>
+        <li><a href="#step-claude">6. Start Claude Code</a></li>
+        <li><a href="#every-class">Every class</a></li>
+        <li><a href="#new-computer">Another computer</a></li>
+        <li><a href="#own-computer">Your own computer</a></li>
+        <li><a href="#help">If something goes wrong</a></li>
+      </ol>
+    </section>
+
+    <div class="os-switch" role="group" aria-label="Choose your computer">
+      <p>My computer is a:</p>
+      <button type="button" data-os-choice="mac" aria-pressed="false">Mac</button>
+      <button type="button" data-os-choice="win" aria-pressed="false">Windows</button>
+      <span class="os-note">The steps below change to match.</span>
+    </div>
+
+    <!-- Step 1 -->
+    <section class="step" id="step-terminal">
+      <div class="step-head"><span class="step-num">1</span><h2>Open a terminal</h2></div>
+      <p class="lede">The terminal is a window where you type commands. You'll copy and paste every command on this page. Use the <strong>Copy</strong> button on each gray box.</p>
+      <ol class="steps">
+        <li class="only-mac"><span class="os-tag">Mac</span>Press <strong>Command + Space</strong>, type <strong>Terminal</strong>, and press <strong>Return</strong>.</li>
+        <li class="only-win"><span class="os-tag">Windows</span>Click <strong>Start</strong>, type <strong>PowerShell</strong>, and open <strong>Windows PowerShell</strong>. Don't choose "Run as administrator."</li>
+        <li>To paste a command, click in the terminal and press <strong class="only-mac">Command + V</strong><strong class="only-win">Ctrl + V</strong>. Then press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong> to run it.</li>
+      </ol>
+    </section>
+
+    <!-- Step 2 -->
+    <section class="step" id="step-github">
+      <div class="step-head"><span class="step-num">2</span><h2>Sign in to GitHub</h2></div>
+      <p class="lede">GitHub stores your project online, so you can get to it from any computer. Git, Python, and the GitHub tool are already installed on class computers. You only need to sign in.</p>
+      <ol class="steps">
+        <li>No GitHub account yet? Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> and create a free one with your class Gmail. Pick a professional username, like <code>firstname-lastname</code>. Employers may see it.</li>
+        <li>In the terminal, sign in:
+          <pre class="cmd">gh auth login</pre>
+          Answer the questions with your arrow keys and <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>: <strong>GitHub.com</strong> → <strong>HTTPS</strong> → <strong>Yes</strong> → <strong>Login with a web browser</strong>. Copy the 8-character code it shows, press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>, paste the code in the browser, and click <strong>Authorize</strong>.</li>
+        <li>Tell Git your name and email. Change the parts in quotes to yours, using the same email as your GitHub account:
+          <pre class="cmd">git config --global user.name "Your Name"
+git config --global user.email "you@gmail.com"</pre>
+        </li>
+      </ol>
+      <p class="check"><strong>Check:</strong> <code>gh auth status</code> should say you're logged in.</p>
+    </section>
+
+    <!-- Step 3 -->
+    <section class="step" id="step-key">
+      <div class="step-head"><span class="step-num">3</span><h2>Save your API key on your computer</h2></div>
+      <p class="lede">Your API key lets Claude Code and your agents use your class budget. Save it once, and every new terminal window will have it.</p>
+      <div class="warn">
+        <p><strong>Keep your key private.</strong> Never paste it into a chat with Claude, a document, a screenshot, an email, or any file in your project. If someone gets it, they can spend your budget. If you think it leaked, tell your instructor right away and they'll replace it.</p>
+      </div>
+      <ol class="steps" style="margin-top:1rem">
+        <li>Find the key your instructor sent you. It starts with <code>sk-ant-</code>. Copy all of it.</li>
+        <li>Run this command. When it asks, paste your key and press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>.
+          <span class="only-mac"> Nothing shows while you paste. That's normal.</span>
+          <pre class="cmd only-mac">read -s "K?Paste your API key, then press Return: " && echo "export ANTHROPIC_API_KEY=$K" >> ~/.zshrc && unset K && echo && echo "Saved."</pre>
+          <pre class="cmd only-win">$k = Read-Host "Paste your API key, then press Enter"; [Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", $k.Trim(), "User"); Remove-Variable k; "Saved."</pre>
+        </li>
+        <li><strong>Close the terminal and open a new one.</strong> Then check that the key is there. This shows only the first few characters:
+          <pre class="cmd only-mac">echo ${ANTHROPIC_API_KEY:0:10}</pre>
+          <pre class="cmd only-win">$env:ANTHROPIC_API_KEY.Substring(0,10)</pre>
+        </li>
+      </ol>
+      <p class="check"><strong>Check:</strong> you should see <code>sk-ant-api</code>. If you see nothing, run the save command above again, then open a new terminal.</p>
+    </section>
+
+    <!-- Step 4 -->
+    <section class="step" id="step-repo">
+      <div class="step-head"><span class="step-num">4</span><h2>Get your class repo</h2></div>
+      <p class="lede">A repo (repository) is your project folder on GitHub. You'll make your own private copy of the class starter repo, <a href="https://github.com/Chart-Academy/jobsearch-starter" target="_blank" rel="noopener">Chart-Academy/jobsearch-starter</a>, and download it to this computer.</p>
+      <ol class="steps">
+        <li>Type your first and last name. The commands below fill in your repo's name for you.
+          <p class="name-field"><label for="student-name">Your name</label> <input id="student-name" type="text" autocomplete="off" placeholder="Jordan Rivera"></p>
+        </li>
+        <li><strong>First time only:</strong> make your private copy and download it into your Documents folder:
+          <pre class="cmd">cd ~/Documents
+gh repo create <span class="repo-name">jobsearch-yourname</span> --private --template Chart-Academy/jobsearch-starter --clone</pre>
+          <span class="check">Already did this on another computer? Download your copy instead:</span>
+          <pre class="cmd">cd ~/Documents
+gh repo clone <span class="repo-name">jobsearch-yourname</span></pre>
+        </li>
+        <li>Go into your project folder:
+          <pre class="cmd">cd <span class="repo-name">jobsearch-yourname</span></pre>
+        </li>
+      </ol>
+      <p class="check"><strong>Check:</strong> run <code>ls</code> (Mac) or <code>dir</code> (Windows). You should see <code>CLAUDE.md</code>, <code>NOTES.md</code>, and an <code>agents</code> folder. Your repo is also on GitHub at <code>github.com/your-username/<span class="repo-name">jobsearch-yourname</span></code>.</p>
+    </section>
+
+    <!-- Step 5 -->
+    <section class="step" id="step-env">
+      <div class="step-head"><span class="step-num">5</span><h2>Install your Python packages</h2></div>
+      <p class="lede">This creates a private Python space for your project, called <code>.venv</code>, and installs the tools your agents need. It stays on this computer and isn't saved to GitHub.</p>
+      <ol class="steps">
+        <li>Make sure you're in your repo folder from step 4. Then run:
+          <pre class="cmd only-mac">python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt</pre>
+          <pre class="cmd only-win">python -m venv .venv; .venv\Scripts\Activate.ps1; pip install -r requirements.txt</pre>
+        </li>
+        <li class="only-win"><span class="os-tag">Windows</span>If you see "running scripts is disabled on this system," run this once, then run the line above again:
+          <pre class="cmd">Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</pre>
+        </li>
+      </ol>
+      <p class="check"><strong>Check:</strong> your terminal line now starts with <code>(.venv)</code>.</p>
+    </section>
+
+    <!-- Step 6 -->
+    <section class="step" id="step-claude">
+      <div class="step-head"><span class="step-num">6</span><h2>Start Claude Code</h2></div>
+      <ol class="steps">
+        <li>In your repo folder, run:
+          <pre class="cmd">claude</pre>
+        </li>
+        <li>Claude Code asks: <em>"Detected a custom API key in your environment. Do you want to use this API key?"</em> Choose <strong>Yes</strong>.</li>
+        <li>If it asks you to sign in or choose an account type instead, don't sign in with your personal Claude account. Type <code>/logout</code>, press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>, and close the terminal. Then open a new terminal, go back to your repo folder, and run <code>claude</code> again.</li>
+        <li>Type <code>/status</code> and press <strong class="only-mac">Return</strong><strong class="only-win">Enter</strong>. It should say you're using an <strong>API key</strong>. That means Claude Code is billing your class budget, not a personal account.</li>
+        <li>Try it. Type:
+          <p class="ask"><strong>Ask Claude:</strong> "Read CLAUDE.md and NOTES.md and tell me what this project is. Then check that Python 3.12 is installed and the .venv is working."</p>
+        </li>
+      </ol>
+      <p class="callout" style="margin-top:1.25rem">That's it. Your computer is set up. 🎉</p>
+    </section>
+
+    <!-- Every class -->
+    <section class="step" id="every-class">
+      <h2 class="section-title">Every class</h2>
+      <div class="gs-cards three">
+        <div class="gs-card">
+          <svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6"/><path d="M4 20h16"/></svg>
+          <h3>1. Start</h3>
+          <p>Open a terminal and get your latest work from GitHub:</p>
+          <pre class="cmd only-mac">cd ~/Documents/<span class="repo-name">jobsearch-yourname</span> && git pull && source .venv/bin/activate && claude</pre>
+          <pre class="cmd only-win">cd ~\Documents\<span class="repo-name">jobsearch-yourname</span>; git pull; .venv\Scripts\Activate.ps1; claude</pre>
+        </div>
+        <div class="gs-card">
+          <svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l4 4-9 9H5v-4z"/><path d="M12 8l4 4"/></svg>
+          <h3>2. Build</h3>
+          <p>Tell Claude what you want in plain English. Check what it builds before you trust it, and type <code>/cost</code> any time to see how much you've used.</p>
+        </div>
+        <div class="gs-card">
+          <svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V8M6 14l6-6 6 6"/><path d="M4 4h16"/></svg>
+          <h3>3. Save to GitHub</h3>
+          <p>Before you leave, every time:</p>
+          <p class="ask"><strong>Ask Claude:</strong> "Update NOTES.md with what we did today and what's next. Then commit and push my work to GitHub."</p>
+        </div>
+      </div>
+      <p class="callout" style="margin-top:1.25rem"><strong>Why NOTES.md matters:</strong> Claude doesn't remember your conversations from one computer to another. Your repo does. Claude reads <code>CLAUDE.md</code> and <code>NOTES.md</code> at the start of every session, so keep them up to date and you can pick up on any computer.</p>
+    </section>
+
+    <!-- New computer -->
+    <section class="step" id="new-computer">
+      <h2 class="section-title">Using a different class computer</h2>
+      <div class="prose">
+        <p>On a class computer you haven't used before, do steps 1–6 again. Skip making a GitHub account, and in step 4 use the "Already did this on another computer?" command. Your work comes down from GitHub.</p>
+        <p>Class computers are shared. Before you leave, sign out of GitHub and remove your key so the next person can't use your work or your budget:</p>
+      </div>
+      <pre class="cmd only-mac">gh auth logout; sed -i '' '/ANTHROPIC_API_KEY/d' ~/.zshrc && echo "Signed out and key removed."</pre>
+      <pre class="cmd only-win">gh auth logout; [Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", $null, "User"); "Signed out and key removed."</pre>
+    </section>
+
+    <!-- Own computer -->
+    <section class="step" id="own-computer">
+      <h2 class="section-title">Using your own computer</h2>
+      <p class="lede section-lede" style="margin-bottom:1rem">Class computers come ready. On your own computer, install these first, then do steps 1–6.</p>
+      <details class="lesson">
+        <summary><span class="lesson-num">Install</span><span class="lesson-title">Git, the GitHub tool, Python 3.12, and Claude Code</span><span class="lesson-toggle" aria-hidden="true">+</span></summary>
+        <div class="lesson-body">
+          <ol class="steps">
+            <li class="only-mac"><span class="os-tag">Mac</span>Git: run this. If a window asks to install "command line developer tools," click <strong>Install</strong>.
+              <pre class="cmd">xcode-select --install</pre></li>
+            <li class="only-mac"><span class="os-tag">Mac</span>GitHub tool: go to <a href="https://cli.github.com/" target="_blank" rel="noopener">cli.github.com</a>, click <strong>Download for Mac</strong>, and open the installer.</li>
+            <li class="only-mac"><span class="os-tag">Mac</span>Python: go to <a href="https://www.python.org/downloads/macos/" target="_blank" rel="noopener">python.org/downloads/macos</a>, download the latest <strong>Python 3.12</strong> installer, and open it. When it finishes, double-click <strong>Install Certificates.command</strong> in the Finder window that opens.</li>
+            <li class="only-win"><span class="os-tag">Windows</span>Git, the GitHub tool, and Python, all at once. Click <strong>Yes</strong> or <strong>Agree</strong> if Windows asks:
+              <pre class="cmd">winget install --id Git.Git -e; winget install --id GitHub.cli -e; winget install --id Python.Python.3.12 -e</pre></li>
+            <li>Claude Code: follow <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">install Claude Code</a>.</li>
+            <li>Close the terminal, open a new one, and check that each one is there:
+              <pre class="cmd only-mac">git --version; gh --version; python3 --version; claude --version</pre>
+              <pre class="cmd only-win">git --version; gh --version; python --version; claude --version</pre></li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="step" id="help">
+      <h2 class="section-title">If something goes wrong</h2>
+      <p class="lede section-lede" style="margin-bottom:1rem">Claude Code can usually fix setup problems for you. Paste the error and <strong>ask Claude:</strong> "I got this error. What does it mean, and how do I fix it?" Never paste your API key.</p>
+      <div class="table-wrap">
+        <table class="fix-table">
+          <thead><tr><th>What you see</th><th>What to do</th></tr></thead>
+          <tbody>
+            <tr><td>"command not found" or "is not recognized"</td><td>Close the terminal and open a new one. If it still happens, the install didn't finish. Run that step again.</td></tr>
+            <tr><td><code>python</code> is not recognized (Windows)</td><td>Run the Python installer again, click <strong>Modify</strong>, and turn on <strong>Add Python to environment variables</strong>. Or use the <code>winget</code> command in <a href="#own-computer">Your own computer</a>.</td></tr>
+            <tr><td>Claude Code asks you to log in, or <code>/status</code> doesn't say "API key"</td><td>Your key isn't saved. Do the check in step 3. If it's empty, save the key again. Then type <code>/logout</code> in Claude Code and restart it.</td></tr>
+            <tr><td>"Invalid API key"</td><td>The key was pasted wrong, or it was replaced. Save it again in step 3, copying the whole key with no spaces.</td></tr>
+            <tr><td>"Credit balance is too low" or a spending limit error</td><td>You've used your class budget. Tell your instructor.</td></tr>
+            <tr><td>"running scripts is disabled" (Windows)</td><td>See the fix in step 5.</td></tr>
+            <tr><td><code>git push</code> is rejected</td><td>Your repo has newer work from another computer. <strong>Ask Claude:</strong> "Pull the latest changes from GitHub, fix any conflicts, then push."</td></tr>
+            <tr><td><code>(.venv)</code> is missing from your terminal line</td><td>Run the activate part of the "Start" command in <a href="#every-class">Every class</a>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="gs-box rules">
+      <h2 class="section-title">Ground rules for Claude Code</h2>
+      <ul class="rule-list">
+        <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Keep your API key out of chats, files, screenshots, and GitHub. It's saved on your computer, and that's the only place it belongs.</span></li>
+        <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Your budget is about $20 for the whole course. Check <code>/cost</code>, and start a fresh session with <code>/clear</code> when you switch tasks so you don't use extra.</span></li>
+        <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Read what Claude wants to do before you approve it. You're responsible for anything it builds or changes.</span></li>
+        <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Your agents can search and organize job listings, but you apply yourself. Never let an agent log in to a job site or apply for you.</span></li>
+        <li><svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V8M6 14l6-6 6 6"/><path d="M4 4h16"/></svg><span>Push to GitHub at the end of every class. If it isn't on GitHub, it isn't saved.</span></li>
+      </ul>
+    </section>
+
+    <p class="callout">Stuck for more than 10 minutes? Ask your instructor. Setup problems are normal, and they're faster to fix together.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-map" aria-label="Site map">
+        <div>
+          <p class="footer-head">Course</p>
+          <ul><li><a href="index.html">Home</a></li><li><a href="getting-started.html">Getting Started</a></li><li><a href="claude-code-setup.html" aria-current="page">Claude Code Setup</a></li><li><a href="grading.html">Grading</a></li></ul>
+        </div>
+        <div>
+          <p class="footer-head">Learn</p>
+          <ul><li><a href="lessons.html">Lessons</a></li></ul>
+        </div>
+      </nav>
+      <a class="to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      <div class="footer-meta">
+        <p>© 2026 Chart Academy</p>
+        <p>AI for Workforce Readiness · <a href="https://www.thechartacademy.com">thechartacademy.com</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/theme.js"></script>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var buttons = document.querySelectorAll("[data-os-choice]");
+      function show(os) {
+        root.setAttribute("data-os", os);
+        try { localStorage.setItem("setup-os", os); } catch (e) {}
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-os-choice") === os ? "true" : "false"); });
+      }
+      buttons.forEach(function (b) { b.addEventListener("click", function () { show(b.getAttribute("data-os-choice")); }); });
+      show(root.getAttribute("data-os") || "mac");
+
+      // Repo name from the student's name: "Jordan Rivera" -> "jobsearch-jordan-rivera"
+      var nameInput = document.getElementById("student-name");
+      function repoName(name) {
+        var slug = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+        return "jobsearch-" + (slug || "yourname");
+      }
+      function fillRepoName() {
+        var r = repoName(nameInput.value);
+        document.querySelectorAll(".repo-name").forEach(function (el) { el.textContent = r; });
+        try { localStorage.setItem("setup-name", nameInput.value); } catch (e) {}
+      }
+      if (nameInput) {
+        try { nameInput.value = localStorage.getItem("setup-name") || ""; } catch (e) {}
+        nameInput.addEventListener("input", fillRepoName);
+        fillRepoName();
+      }
+
+      // Copy buttons on every command box (copies the command as it reads right now)
+      document.querySelectorAll("pre.cmd").forEach(function (pre) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "copy-btn";
+        btn.textContent = "Copy";
+        btn.setAttribute("aria-label", "Copy command");
+        btn.addEventListener("click", function () {
+          var copy = pre.cloneNode(true);
+          copy.querySelectorAll(".copy-btn").forEach(function (b) { b.remove(); });
+          var text = copy.textContent;
+          function done() { btn.textContent = "Copied ✓"; setTimeout(function () { btn.textContent = "Copy"; }, 1600); }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+          } else { fallback(); }
+          function fallback() {
+            var ta = document.createElement("textarea");
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            try { document.execCommand("copy"); done(); } catch (e) {}
+            document.body.removeChild(ta);
+          }
+        });
+        pre.appendChild(btn);
+      });
+    })();
+  </script>
+</body>
+</html>
