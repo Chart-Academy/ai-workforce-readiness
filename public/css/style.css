@@ -1568,3 +1568,6 @@ ol.objectives li::marker { color: var(--accent); font-weight: 700; }
 .prompt-panels code { -webkit-user-select: text; user-select: text; }
 .prompt-help { border: 1px dashed var(--line); border-radius: 8px; padding: 0.75rem 1rem; display: grid; gap: 0.5rem; }
 .choice-word { background: #fff7d6; padding: 0 0.2rem; border-radius: 3px; }
+.repo-field label { font-weight: 700; }
+.repo-name-input { font: inherit; padding: 0.25rem 0.5rem; border: 2px solid #f2c94c; border-radius: 4px; background: #fff7d6; color: #16213f; margin-left: 0.25rem; }
+.prompt-panels .cmd .repo-name { color: #f2c94c; font-weight: 700; }

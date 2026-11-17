@@ -591,11 +591,7 @@ Then add the job to my tracker: Company, Role, Date applied, Status, Follow-up d
                 <p>Open the panels in order. Change the words in the white boxes to your own choices, click <strong>Copy</strong>, and paste into Claude Code. Wait until Claude finishes and you've checked the result before you open the next panel.</p>
                 <details class="prompt-panel" id="wo-04-p1" data-kind="terminal">
                   <summary><span class="panel-num">1</span><span class="panel-title"><span class="panel-tag">Terminal</span>Start of class (type these in the terminal)</span><span class="panel-done" aria-hidden="true"></span></summary>
-                  <div class="panel-body"><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~/Documents/&lt;your-repo-name&gt;
-git pull
-source .venv/bin/activate        # Windows: .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-claude</pre></div>
+                  <div class="panel-body"><p class="repo-field"><label>Your first and last name (fills in your repo name below): <input class="repo-name-input" type="text" placeholder="Jordan Rivera" autocomplete="name"></label></p><p>Change <code class="repo-name">jobsearch-yourname</code> to your repo's name (the one you made on the setup page), then run the line for your computer.</p><p>Mac:</p><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~/Documents/<span class="repo-name">jobsearch-yourname</span> &amp;&amp; git pull &amp;&amp; source .venv/bin/activate &amp;&amp; pip install -r requirements.txt &amp;&amp; claude</pre><p>Windows:</p><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~\Documents\<span class="repo-name">jobsearch-yourname</span>; git pull; .venv\Scripts\Activate.ps1; pip install -r requirements.txt; claude</pre></div>
                 </details>
                 <details class="prompt-panel" id="wo-04-p2" data-kind="prompt">
                   <summary><span class="panel-num">2</span><span class="panel-title"><span class="panel-tag">Prompt</span>Get oriented</span><span class="panel-done" aria-hidden="true"></span></summary>
@@ -741,10 +737,7 @@ When it's done, tell me how to start the hub and open it.</pre></div>
                 <p>Open the panels in order. Change the words in the white boxes to your own choices, click <strong>Copy</strong>, and paste into Claude Code. Wait until Claude finishes and you've checked the result before you open the next panel.</p>
                 <details class="prompt-panel" id="wo-05-p1" data-kind="terminal">
                   <summary><span class="panel-num">1</span><span class="panel-title"><span class="panel-tag">Terminal</span>Start of class (type these in the terminal)</span><span class="panel-done" aria-hidden="true"></span></summary>
-                  <div class="panel-body"><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~/Documents/&lt;your-repo-name&gt;
-git pull
-source .venv/bin/activate        # Windows: .venv\Scripts\Activate.ps1
-claude</pre></div>
+                  <div class="panel-body"><p class="repo-field"><label>Your first and last name (fills in your repo name below): <input class="repo-name-input" type="text" placeholder="Jordan Rivera" autocomplete="name"></label></p><p>Change <code class="repo-name">jobsearch-yourname</code> to your repo's name (the one you made on the setup page), then run the line for your computer.</p><p>Mac:</p><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~/Documents/<span class="repo-name">jobsearch-yourname</span> &amp;&amp; git pull &amp;&amp; source .venv/bin/activate &amp;&amp; pip install -r requirements.txt &amp;&amp; claude</pre><p>Windows:</p><p class="cmd-label">Type in the terminal</p><pre class="cmd">cd ~\Documents\<span class="repo-name">jobsearch-yourname</span>; git pull; .venv\Scripts\Activate.ps1; pip install -r requirements.txt; claude</pre></div>
                 </details>
                 <details class="prompt-panel" id="wo-05-p2" data-kind="prompt">
                   <summary><span class="panel-num">2</span><span class="panel-title"><span class="panel-tag">Prompt</span>Pick up where you left off</span><span class="panel-done" aria-hidden="true"></span></summary>
@@ -939,14 +932,33 @@ Format it so I can add each item to my calendar.
         try { localStorage.setItem(KEY, JSON.stringify(copied)); } catch (e) {}
       }
       document.querySelectorAll('.prompt-panel').forEach(function (p) { if (copied[p.id]) p.classList.add('done'); });
-      function textOf(pre) {
+      function textOf(el) {
         var out = '';
-        pre.childNodes.forEach(function (n) {
+        el.childNodes.forEach(function (n) {
           if (n.nodeType === 3) out += n.nodeValue;
           else if (n.tagName === 'INPUT') out += n.value;
+          else if (n.tagName !== 'BUTTON') out += textOf(n);
         });
         return out;
       }
+
+      // Repo name from the student's name, same as the setup page: "Jordan Rivera" -> "jobsearch-jordan-rivera"
+      function repoName(name) {
+        var slug = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        return 'jobsearch-' + (slug || 'yourname');
+      }
+      var savedName = '';
+      try { savedName = localStorage.getItem('setup-name') || ''; } catch (e) {}
+      function fillRepo(name) {
+        document.querySelectorAll('.prompt-panels .repo-name').forEach(function (el) { el.textContent = repoName(name); });
+        document.querySelectorAll('.repo-name-input').forEach(function (i) { if (i.value !== name) i.value = name; });
+        try { localStorage.setItem('setup-name', name); } catch (e) {}
+      }
+      document.querySelectorAll('.repo-name-input').forEach(function (i) {
+        i.addEventListener('input', function () { fillRepo(i.value); });
+      });
+      if (savedName) fillRepo(savedName);
       document.querySelectorAll('.prompt-panels pre.cmd').forEach(function (pre) {
         var btn = document.createElement('button');
         btn.type = 'button';
